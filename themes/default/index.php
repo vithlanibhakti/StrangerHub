@@ -1,4 +1,7 @@
 <style>
+.height{
+	height:120px;
+}
 .circ {
 	width:150px;  height:150px;
   vertical-align: middle;
@@ -21,8 +24,8 @@ position: relative ;
 
 .over {
 	
-  width: 200px;
-    height: 200px;
+	width: 180px;
+    height: 180px;
     object-fit: cover;
     margin: 5px 10px;
     box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.3);
@@ -40,7 +43,7 @@ position: relative ;
 					</div>
 				</div>
 			</div>
-			<div class="parallax"><img src="<?php echo $theme_url;?>assets/img/dating.jpg" alt="<?php echo ucfirst( $config->site_name );?>"></div>
+			<div class="parallax"><img src="<?php echo $theme_url;?>assets/img/dating.jpg"  alt="<?php echo ucfirst( $config->site_name );?>"></div>
 		</div>
 		<!-- End Top Hero  -->
 
@@ -88,7 +91,7 @@ position: relative ;
 						<label class="bold"><?php echo __( 'and' );?></label>
 					</div>
 					<div class="col">
-						<a href="<?php echo $site_url;?>/login" class="waves-effect waves-light btn-flat btn-large bold btn_glossy"><?php echo __( 'Let\'s Begin' );?></a>
+						<a href="<?php echo $site_url;?>/login" class="waves-effect waves-light btn-flat  bold btn_glossy"><?php echo __( 'Let\'s Begin' );?></a>
 					</div>
 				</div>
 			</div>
@@ -130,13 +133,13 @@ position: relative ;
 		<br>
 		
         		<!-- Get Started  -->
-		<div class="container-fluid bg_gradient">
+		<div class="container-fluid bg_gradient height">
 			<div class="container">
 				<div class="section">
 					<div class="row">
 						<div class="col s12 center-align dt_get_start">
-							<h4 class="white-text light"><?php echo str_replace('{0}', ucfirst( $config->site_name ) , __( 'Connect with your perfect Soulmate here, on {0}.' ) );?></h4>
-							<a href="<?php echo $site_url;?>/register" class="waves-effect waves-light btn-flat btn-large bold btn_glossy"><?php echo __( 'Get Started' );?></a>
+							<h5 class="white-text light"><?php echo str_replace('{0}', ucfirst( $config->site_name ) , __( 'Connect with your perfect Soulmate here, on {0}.' ) );?></h5>
+							<a href="<?php echo $site_url;?>/register" class="waves-effect waves-light btn-flat  bold btn_glossy"><?php echo __( 'Get Started' );?></a>
 						</div>
 					</div>
 				</div>
