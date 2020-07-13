@@ -292,6 +292,12 @@ if (empty($page_loaded)) {
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    <li <?php echo ($page == 'insertvideo') ? 'class="active"' : ''; ?>>
+                        <a href="insertvideo.php">
+                            <i class="material-icons">perm_media</i>
+                            <span>InsertVideo</span>
+                        </a>
+                    </li>
                     <?php //} ?>
                     <?php
                     if ($is_admin == true
