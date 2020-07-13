@@ -27,4 +27,14 @@ $serverkey = "87a76c9739a232f19eebfd2db323a518";
 // Purchase code
 $purchase_code = "03b5c7f9-9403-4a26-a055-63d297033d15"; // Your purchase code, don't give it to anyone.
 
+// Create connection insert video
+$con = mysqli_connect($servername, $dbusername, $dbpassword,$dbname);
+
+// Check connection
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+
+
 ?>

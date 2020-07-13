@@ -8,6 +8,7 @@ Class UserActions extends Aj {
         $username   = '';
         $email      = '';
         $password   = '';
+		$role ='';
         $users      = LoadEndPointResource('users');
         if ($users) {
             if (isset($_POST) && !empty($_POST)) {
@@ -20,11 +21,15 @@ Class UserActions extends Aj {
                 $username   = Secure($_POST[ 'username' ]);
                 $email      = Secure($_POST[ 'email' ]);
                 $password   = Secure($_POST[ 'password' ]);
+				$role      = Secure($_POST[ 'role' ]);
                 if (isset($_POST[ 'username' ]) && empty($_POST[ 'username' ])) {
                     $error .= '<p>• ' . __('Missing username.') . '</p>';
                 }
                 if (isset($_POST[ 'password' ]) && empty($_POST[ 'password' ])) {
                     $error .= '<p>• ' . __('Missing password.') . '</p>';
+                }
+				if (isset($_POST[ 'role' ]) && empty($_POST[ 'role' ])) {
+                    $error .= '<p>• ' . __('Missing Role.') . '</p>';
                 }
                 if (!filter_var($_POST[ 'email' ], FILTER_VALIDATE_EMAIL)) {
                     $error .= '<p>• ' . __('This E-mail is invalid.') . '</p>';

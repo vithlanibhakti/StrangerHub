@@ -2864,7 +2864,7 @@ function GetSiteUsers(){
     if(!empty($config->showed_user)){
         $showed_user = $config->showed_user;
     }
-    $sql  = mysqli_query($conn, 'SELECT * FROM `users` ;');
+    $sql  = mysqli_query($conn, "SELECT * FROM `users`  WHERE `username` != 'guest';");
     while ($fetched_data = mysqli_fetch_assoc($sql)) {
         $path=$fetched_data["avater"];
 		$data[] = userData($fetched_data['id']);;

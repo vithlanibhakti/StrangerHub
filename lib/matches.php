@@ -2,7 +2,8 @@
 class Matches{
     public $users = array();
     public $html = '';
-    public function __construct(){
+    public function __construct()
+	{
         global $db;
         $query = $db->objectBuilder()
                     ->where( 'verified', '1' )

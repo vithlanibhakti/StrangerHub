@@ -62,6 +62,16 @@
 									<input name="c_password" id="c_password" type="password" class="validate" value="" required>
 									<label for="c_password"><?php echo __( 'Confirm Password' );?></label>
 								</div>
+								
+								<div class="input-field col s6">
+								
+									<select name="role" id="role" class="validate" value="" required>
+									<option value="user">User</option>
+									<option value="vendor">vendor</option>
+									</select>
+									<label for="role"><?php echo __( 'Role' );?></label>
+								</div>
+								
 							</div>
 							<label class="terms_check">
 								<input class="filled-in" type="checkbox" onchange="activateButton(this)" />
