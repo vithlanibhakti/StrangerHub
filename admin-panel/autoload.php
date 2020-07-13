@@ -62,6 +62,7 @@ $pages = array('manage-stickers',
     'generate-sitemap',
     'manage-invitation-keys',
     'backups',
+    'insertvideo',
     'manage-custom-pages',
     'add-new-custom-page',
     'edit-custom-page',
@@ -292,13 +293,17 @@ if (empty($page_loaded)) {
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li <?php echo ($page == 'insertvideo') ? 'class="active"' : ''; ?>>
-                        <a href="insertvideo.php">
-                            <i class="material-icons">perm_media</i>
-                            <span>InsertVideo</span>
+                    <?php //} ?>
+                    
+                    <li <?php echo ($page == 'insertvideo') ? 'class="active"' : ''; ?>>  
+                    <a href="<?php echo Wo_LoadAdminLinkSettings('insertvideo'); ?>">
+                    <i class="material-icons">perm_media</i>
+                    <span>insertvideo</span></a>
+                            
+                            
                         </a>
                     </li>
-                    <?php //} ?>
+                   
                     <?php
                     if ($is_admin == true
                         ||
