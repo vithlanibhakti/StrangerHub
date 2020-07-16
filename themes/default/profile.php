@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <?php
     $profile = LoadEndPointResource( 'users' )->get_user_profile(strtolower(substr(route(1), 1)));
     if( $profile->verified !== "1" ) {
@@ -270,7 +272,13 @@ nav .header_user {
                                 </a>
                             <?php } ?>
 
-
+                                
+                            <?php if( $profile->src !== 'Fake' ){?>
+                            <a href="javascript:void(0);" id="btn_open_private_conversation" data-ajax-post="/chat/open_private_conversation" data-ajax-params="from=<?php echo $profile->id;?>&web_device_id=<?php echo $profile->web_device_id;?>" data-ajax-callback="open_private_conversation" title="<?php echo __( 'Message' );?>">
+                                <i class="fa fa-camera" style="font-size:24px"></i>
+                                                     </a>
+                            <?php }?>
+                            
                             <?php if( $profile->src !== 'Fake' ){?>
                             <a href="javascript:void(0);" id="btn_open_private_conversation" data-ajax-post="/chat/open_private_conversation" data-ajax-params="from=<?php echo $profile->id;?>&web_device_id=<?php echo $profile->web_device_id;?>" data-ajax-callback="open_private_conversation" title="<?php echo __( 'Message' );?>">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#2196f3" d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4C22,2.89 21.1,2 20,2Z"></path></svg>
@@ -451,7 +459,8 @@ nav .header_user {
                     </div>
                     <?php } ?>
                     <div class="about_block"> <!-- Profile Info -->
-                    	
+                        <h4><?php echo __( 'Profile Info ' );?></h4>
+						
                         <div class="dt_profile_info">
                             <?php if( !empty( $profile->language ) || !empty( $profile->relationship ) || !empty( $profile->work_status ) || !empty( $profile->education ) ) {?>
                                 <h5><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#ff9800" d="M5,9.5L7.5,14H2.5L5,9.5M3,4H7V8H3V4M5,20A2,2 0 0,0 7,18A2,2 0 0,0 5,16A2,2 0 0,0 3,18A2,2 0 0,0 5,20M9,5V7H21V5H9M9,19H21V17H9V19M9,13H21V11H9V13Z"></path></svg> <?php echo __( 'Basic' );?></h5>

@@ -1,4 +1,4 @@
-    <link rel="stylesheet" href= 
+<link rel="stylesheet" href= 
 "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
     <script src= 
 "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"> 
@@ -29,7 +29,8 @@
                                 $_age = getAge($matche->birthday);
                                 $_location = $matche->country;
                             ?>
-                            <a href="<?php echo $site_url;?>/@<?php echo $matche->username;?>" data-ajax="/@<?php echo $matche->username;?>" tooltip="<?php echo $matche->username;?>"><?php echo ($matche->first_name !== '' ) ? $matche->first_name . ' ' . $matche->last_name : $matche->username;?></a><?php if( !empty($_age) || !empty($_location) ) {?>,<?php }?></div>
+                            <a href="<?php echo $site_url;?>/@<?php echo $matche->username;?>"
+                             data-ajax="/@<?php echo $matche->username;?>" tooltip="<?php echo $matche->username;?>"><?php echo ($matche->first_name !== '' ) ? $matche->first_name . ' ' . $matche->last_name : $matche->username;?></a><?php if( !empty($_age) || !empty($_location) ) {?>,<?php }?></div>
                             <?php if( !empty($_age) ) {?> <div class="usr_age"><?php echo $_age;?></div><?php }?>
                             <?php if( !empty($_location) ) {?> <div class="usr_location"><?php echo $_location;?></div> <?php }?>
                         <?php if( $mode == 'hot' ){ echo '&nbsp;&nbsp;' . $matche->gender; }?>
