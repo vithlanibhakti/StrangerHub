@@ -1,3 +1,23 @@
+<link rel="stylesheet" href= 
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <script src= 
+"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"> 
+    </script> 
+    <script src= 
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> 
+    </script> 
+    <script> 
+        $(document).ready(function() { 
+            var url = $("#Geeks3").attr('src'); 
+            $("#Geeks2").on('hide.bs.modal', function() { 
+                $("#Geeks3").attr('src', ''); 
+            }); 
+            $("#Geeks2").on('show.bs.modal', function() { 
+                $("#Geeks3").attr('src', url); 
+            }); 
+        }); 
+    </script> 
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <?php
@@ -252,6 +272,7 @@ nav .header_user {
 
                             <?php } ?>
                         </h2>
+
                         <?php if(!empty($user) ) {?>
                         <div class="dt_usr_opts_mnu">
                             <?php if( $config->connectivitySystem == "1" && !( Wo_IsFollowing($profile->id, $user->id) || Wo_IsFollowing($user->id, $profile->id) ) && !( Wo_IsFollowRequested($profile->id, (int) $user->id) || Wo_IsFollowRequested( (int) $user->id , $profile->id ) ) && (int)Wo_CountFollowing($user->id) < (int)$config->connectivitySystemLimit ){ ?>
@@ -316,8 +337,7 @@ nav .header_user {
                     <?php } ?>
                 </div>
             </div>
-
-            <div class="dt_user_profile">
+      <div class="dt_user_profile">
                 <!-- Cover -->
                 <figure class="dt_cover_photos">
                     <div class="dt_cp_photos_list">
@@ -458,6 +478,52 @@ nav .header_user {
                         ?>
                     </div>
                     <?php } ?>
+                    
+<?php 
+//echo $profile->username;
+$name=$profile->username;
+    include("config.php");
+	$sql=mysqli_query($con,"SELECT id from users where username='$name' and role='vendor'");
+	while($row=mysqli_fetch_assoc($sql))
+		{
+			foreach($row as $id)
+			{
+				//echo "<br>".$id;
+			}
+		}
+		$fetchVideos = mysqli_query($con, "SELECT * FROM videos where id='$id' ORDER BY id DESC");
+        while($row = mysqli_fetch_assoc($fetchVideos)){
+            $location = $row['location'];    
+        
+			//echo $location;
+           // echo "<video src='".$location."' id='Geeks3' controls width='320px' height='200px' >";
+        ?>
+        
+	<div class="vew_profile">
+   	<div class="bs-example"> 
+            <a href="#Geeks2"
+            class="btn btn-lg btn-primary waves-effect" data-toggle="modal">View Video</a> 
+  
+            <div id="Geeks2" class="modal fade"> 
+                <div class="modal-dialog"> 
+                    <div class="modal-content"> 
+                        <div class="modal-header"> 
+						<div  style="align:'left'">
+                            <button type="button" data-dismiss="modal" aria-hidden="true"> ×</button> 
+                        </div> 
+                        </div> 
+                        <div class="modal-body"> 
+   						<video src='<?php echo $location; ?>' id='Geeks3' controls width='320px' height='200px' >						
+                            </iframe> 
+                        </div> 
+                    </div> 
+                </div> 
+        </div> 
+    </div> 
+      
+        <?php
+        }
+		?> 
                     <div class="about_block"> <!-- Profile Info -->
                         <h4><?php echo __( 'Profile Info ' );?></h4>
 						
