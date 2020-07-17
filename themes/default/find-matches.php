@@ -50,6 +50,33 @@
 					$_gender_text = __('All');
 				}
 			?>
+			   <?php
+
+if( isset( $_SESSION['JWT'] ) ){
+	$profile = auth();
+}else{
+	exit();
+}
+	$guest= $profile->username;
+//echo $guest;
+include("config.php");
+$sql=mysqli_query($con,"SELECT role from users where username='$guest'");
+						  while($row=mysqli_fetch_assoc($sql))
+								{
+									foreach($row as $role)
+									{
+								   //echo "<br>"."$role";
+									}
+									
+								}
+
+								if($role == 'vendor')
+								{
+								echo "<br>"."vendorlogin";
+								}
+								else{
+
+?>
 			<!-- Filters  -->
 			<div class="bg_gradient dt_home_filters_prnt">
 				<div class="dt_home_filters">
@@ -144,7 +171,7 @@
                                                     ?>
                                                 </select>
 											</div>
-                                            <?php } ?>
+                                            <?php }  ?>
 											<div class="col s12 m3">
 												<h5><?php echo __('Ages');?></h5>
 												<div class="row r_margin">
@@ -238,7 +265,8 @@
 																}
 																echo '<option value="'.@implode(',', $lang_ids) .'" data-txt="All">'. __('ALL') .'</option>';
 																echo $lang_html;
-															}
+													
+												}
 														?>
 <!--                                                        <option value="english" data-txt="English">English</option><option value="arabic" data-txt="Arabic">Arabic</option><option value="dutch" data-txt="Dutch">Dutch</option><option value="french" data-txt="French">French</option><option value="german" data-txt="German">German</option><option value="italian" data-txt="Italian">Italian</option><option value="portuguese" data-txt="Portuguese">Portuguese</option><option value="russian" data-txt="Russian">Russian</option><option value="spanish" data-txt="Spanish">Spanish</option><option value="turkish" data-txt="Turkish">Turkish</option>-->
 													</select>
@@ -413,6 +441,33 @@
             </h5>-->
 
             <!-- Match Users  -->
+			<?php
+
+if( isset( $_SESSION['JWT'] ) ){
+	$profile = auth();
+}else{
+	exit();
+}
+	$guest= $profile->username;
+//echo $guest;
+include("config.php");
+$sql=mysqli_query($con,"SELECT role from users where username='$guest'");
+						  while($row=mysqli_fetch_assoc($sql))
+								{
+									foreach($row as $role)
+									{
+								   //echo "<br>"."$role";
+									}
+									
+								}
+
+								if($role == 'vendor')
+								{
+								echo "<br>"."vendorlogin";
+								}
+								else{
+
+?>
             <div id="section_match_users" class="<?php echo $match_style;?>">
 			                   <?php
 							    $siteUsers = GetSiteUsers();
@@ -425,10 +480,31 @@
                     ?>
                     <div class="valign-wrapper dt_home_match_user">
                         <div class="mtc_usr_avtr" id="avaters_item_container">
-						<?php foreach ($siteUsers as $key => $user){ ?>
-						<a href="<?php echo $site_url;?>/@<?php echo $user->username;?>" data-ajax="/@<?php echo $user->username;?>">   
-                        <img src="<?php echo $user->mediafiles[0][avater]; ?>" alt="<?php echo $user->full_name;?>"  class="circle over circ xuser">
-						<?php } ?>
+						
+
+						<?php
+										
+										include("config.php");
+									
+										$sql  = mysqli_query($con, "SELECT * FROM `users` WHERE `username` != 'guest' and role='vendor'");
+											while($row = mysqli_fetch_assoc($sql)){
+												$location = $row['avater'];
+												$username = $row['username'];
+												
+												 ?>
+												 <a href="<?php echo $site_url;?>/@<?php echo $username;?>" data-ajax="/@<?php echo $username;?>">
+										
+										<span class="videoContainer">
+											<img src="<?php echo $location; ?>" alt="<?php echo $username;?>"  class="circle over circ xuser">
+										
+														</span>
+													</a>
+										
+										<?php
+										 }
+										?>
+
+
                         </div>
                         <div class="mtc_usr_details" id="match_item_container">
                             <?php echo $data['matches']; ?>
@@ -436,9 +512,6 @@
                     </div>
                 <?php } ?>
             </div>
-
-
-
 
 
 			<a href="javascript:void(0);" style="display: none;" id="btn_load_more_match_users" data-lang-loadmore="<?php echo __('Load more...');?>" data-lang-nomore="<?php echo __('No more users to show.');?>" data-ajax-post="/loadmore/match_users" data-ajax-params="page=2" data-ajax-callback="callback_load_more_match_users" class="btn waves-effect load_more"><?php echo __('Load more...');?></a>
@@ -471,6 +544,7 @@
 			</div>
 		</div>
 		<!-- End Search Users  -->
+					<?php } } ?>
 	</div>
 </div>
 <script>

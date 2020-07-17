@@ -1,3 +1,33 @@
+<link rel="stylesheet" href= 
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <script src= 
+"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"> 
+    </script> 
+    <script src= 
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> 
+    </script> 
+    <style> 
+        .bs-example { 
+            margin: 20px; 
+        } 
+          
+        .modal-content iframe { 
+            margin: 0 auto; 
+            display: block; 
+        } 
+    </style> 
+    <script> 
+        $(document).ready(function() { 
+            var url = $("#Geeks3").attr('src'); 
+            $("#Geeks2").on('hide.bs.modal', function() { 
+                $("#Geeks3").attr('src', ''); 
+            }); 
+            $("#Geeks2").on('show.bs.modal', function() { 
+                $("#Geeks3").attr('src', url); 
+            }); 
+        }); 
+    </script> 
+    
 <?php
     global $db;
     $views_count = 0;
@@ -331,15 +361,39 @@ nav .header_user {
 						<div class="dt_cp_bar_add_photos" onclick="document.getElementById('avatar_profileimg').click(); return false"> <!-- Add Photo -->
 							<div class="inline">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5,3A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H14.09C14.03,20.67 14,20.34 14,20C14,19.32 14.12,18.64 14.35,18H5L8.5,13.5L11,16.5L14.5,12L16.73,14.97C17.7,14.34 18.84,14 20,14C20.34,14 20.67,14.03 21,14.09V5C21,3.89 20.1,3 19,3H5M19,16V19H16V21H19V24H21V21H24V19H21V16H19Z" /></svg>
-								<b><?php echo __( 'Add Photo' );?></b>
+								<b><?php echo __( 'Add Photo' );?>
+                                
+                                </b>
+                                <?php $name= $profile->username; 
+                                   // echo $name;
+                                include("config.php");
+                                $sql=mysqli_query($con,"SELECT role from users where username='$name'");
+                              while($row=mysqli_fetch_assoc($sql))
+                                    {
+                                        foreach($row as $role)
+                                        {
+                                       // echo "<br>"."$role";
+                                        }
+                                        
+                                    }
+	
+                                ?>
+
 							</div>
 						</div>
-						<div class="dt_cp_bar_add_videos" onclick="$('#upload_video').modal('open');$('#btn_video_upload').removeClass('hide');$('#video_form').hide();"> <!-- Add Photo -->
+
+                        <?php if($role == 'vendor')
+                        {?>
+					<div class="dt_cp_bar_add_videos" onclick="$('#upload_video').modal('open');$('#btn_video_upload').removeClass('hide');$('#video_form').hide();"> <!-- Add Photo -->
                             <div class="inline">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z" /></svg>
                                 <b><?php echo __( 'Add Video' );?></b>
                             </div>
                         </div>
+                        
+	
+                <?php
+                        } ?>
 						<?php
 						$i = 0;
 						$media_count = count( (array)$profile->mediafiles );
@@ -467,7 +521,56 @@ nav .header_user {
                         </div>
                     <?php } ?>
 
-                    <div class="about_block"> <!-- Profile Info -->
+                    <?php 
+//echo $profile->username;
+$name=$profile->username;
+    include("config.php");
+	$sql=mysqli_query($con,"SELECT id from users where username='$name' and role='vendor'");
+	while($row=mysqli_fetch_assoc($sql))
+		{
+			foreach($row as $id)
+			{
+				//echo "<br>".$id;
+			}
+		}
+		$fetchVideos = mysqli_query($con, "SELECT video_file FROM mediafiles where user_id='$id' AND is_video='1' ORDER BY id DESC");
+        $rowcount=mysqli_num_rows($fetchVideos);
+        
+        while($row = mysqli_fetch_assoc($fetchVideos)){
+            $location = $row['video_file'];    
+        
+	//	echo $location;
+        //echo "<video src='".$location."' id='Geeks3' controls width='320px' height='200px' >";    
+        }
+if($rowcount >= '1')
+{
+        ?>
+    
+	<div class="vew_profile">
+   	<div class="bs-example"> 
+            <a href="#Geeks2"
+            class="btn btn-lg btn-primary waves-effect" data-toggle="modal">View Video</a> 
+  
+            <div id="Geeks2" class="modal fade"> 
+                <div class="modal-dialog"> 
+                    <div class="modal-content"> 
+                        <div class="modal-header"> 
+						<div  style="align:'left'">
+                            <button type="button" data-dismiss="modal" aria-hidden="true"> ×</button> 
+                        </div> 
+                        </div> 
+                        <div class="modal-body"> 
+   						<video src='<?php echo $location; ?>' id='Geeks3' controls width='320px' height='200px' >						
+                            </iframe> 
+                        </div> 
+                    </div> 
+                </div> 
+        </div> 
+    </div> 
+      
+        
+<?php } 
+?>                   <div class="about_block"> <!-- Profile Info -->
                         <h4><?php echo __( 'Profile Info ' );?>
                             <span><a class="edit_link" href="<?php echo $site_url;?>/settings-profile/<?php echo $profile->username;?>" data-ajax="/settings-profile/<?php echo $profile->username;?>"><?php echo __( 'Edit' );?></a></span>
                         </h4>

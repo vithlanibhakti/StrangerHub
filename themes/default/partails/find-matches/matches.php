@@ -16,10 +16,38 @@
                 $("#Geeks3").attr('src', url); 
             }); 
         }); 
-    </script> 
+    </script> 								
+          <?php
+
+          if( isset( $_SESSION['JWT'] ) ){
+              $profile = auth();
+          }else{
+              exit();
+          }
+              $guest= $profile->username;
+         //echo $guest;
+      include("config.php");
+     $sql=mysqli_query($con,"SELECT role from users where username='$guest'");
+                                    while($row=mysqli_fetch_assoc($sql))
+                                          {
+                                              foreach($row as $role)
+                                              {
+                                             //echo "<br>"."$role";
+                                              }
+                                              
+                                          }
+      
+                                          if($role == 'vendor')
+                                          {
+                                          echo "<br>"."vendorlogin";
+                                          }
+                                          else{
+      
+?>
 <?php global $site_url; ?>
 <div class="mtc_usrd_content" data-id="<?php echo $matche->id;?>" <?php if($matche_first === false){?> style="display: none;"<?php }?>>
     <div class="row">
+    
         <div class="col <?php if( $mode == 'hot' ){?>s12<?php }else{ ?>s12 m7<?php }?>">
             <div class="mtc_usrd_slider">
                 <div class="mtc_usrd_top">
@@ -28,7 +56,9 @@
                             <?php
                                 $_age = getAge($matche->birthday);
                                 $_location = $matche->country;
+                                    
                             ?>
+                            
                             <a href="<?php echo $site_url;?>/@<?php echo $matche->username;?>"
                              data-ajax="/@<?php echo $matche->username;?>" tooltip="<?php echo $matche->username;?>"><?php echo ($matche->first_name !== '' ) ? $matche->first_name . ' ' . $matche->last_name : $matche->username;?></a><?php if( !empty($_age) || !empty($_location) ) {?>,<?php }?></div>
                             <?php if( !empty($_age) ) {?> <div class="usr_age"><?php echo $_age;?></div><?php }?>
@@ -76,20 +106,13 @@
                 <?php }?>
             </div>
         </div>
+        
 		<?php if( $mode == 'hot' ){?>
 		<?php }else{ ?>
         <div class="col s12 m5">
             <div class="mtc_usrd_sidebar">
                 <div class="sidebar_usr_info">
-              <?php
-    $error = "";
-    if( isset( $_SESSION['JWT'] ) ){
-        $profile = auth();
-    }else{
-        exit();
-    }
-		$guest= $profile->username;
-   //echo $guest;?>
+    
         <h5><?php echo __('About');?> <?php echo ($matche->first_name !== '' ) ? $matche->first_name . ' ' . $matche->last_name : $matche->username;?></h5>
 
      	<?php
@@ -132,7 +155,7 @@
 		
 		
 	?>
-					                </div>
+			</div>
                 <div class="vew_profile">
                     <a href="<?php echo $site_url;?>/@<?php echo $matche->username;?>" data-ajax="/@<?php echo $matche->username;?>" class="btn waves-effect"><?php echo __( 'View Profile' );?></a>
                 </div>
@@ -140,6 +163,6 @@
                     
             </div>
         </div>
-		<?php }?>
+		<?php }}?>
     </div>
 </div>

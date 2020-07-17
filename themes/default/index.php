@@ -97,8 +97,7 @@ position: relative ;
 			</div>
 		</div>
 		<!-- End Filters  -->
-	
-
+		
         <?php if( $config->show_user_on_homepage == '1'){
             $siteUsers = GetSiteUsers();
             if( !empty($siteUsers) ){
@@ -111,15 +110,28 @@ position: relative ;
                             <div class="col s12 center-align dt_get_start">
                                 <h4 class="white-text light"><?php echo str_replace('{0}', ucfirst( $config->site_name ) , __( 'Latest {0} users.' ) );?></h4>
                                 <div class="center">
-                               <?php
-                                    foreach ($siteUsers as $key => $user){ ?>
-                                        <a href="<?php echo $site_url;?>/@<?php echo $user->username;?>" data-ajax="/@<?php echo $user->username;?>">
-                                            <span class="videoContainer">
-                                            <img src="<?php echo $user->mediafiles[0][avater]; ?>" alt="<?php echo $user->full_name;?>"  class="circle over circ xuser">
-                                            <img src="play-btn.png" height='100' width='100' alt="play" class="playBtn under">
-                                            </span>
-                                        </a>
-                                    <?php } ?>
+								<?php
+										
+										include("config.php");
+									
+										$sql  = mysqli_query($con, "SELECT * FROM `users` WHERE `username` != 'guest' and role='vendor'");
+											while($row = mysqli_fetch_assoc($sql)){
+												$location = $row['avater'];
+												$username = $row['username'];
+												
+												 ?>
+												 <a href="<?php echo $site_url;?>/@<?php echo $username;?>" data-ajax="/@<?php echo $username;?>">
+										
+										<span class="videoContainer">
+																		<img src="<?php echo $location; ?>" alt="<?php echo $username;?>"  class="circle over circ xuser">
+										<img src="play-btn.png" height='100' width='100' alt="play" class="playBtn under">
+														</span>
+													</a>
+										
+										<?php
+										 }
+										?>
+										
                                 </div>
                             </div>
                         </div>
