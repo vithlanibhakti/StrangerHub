@@ -65,6 +65,7 @@ $pages = array('manage-stickers',
     'insertvideo',
     'Managevideo',
     'deletevideo',
+    'videos',
     'manage-custom-pages',
     'add-new-custom-page',
     'edit-custom-page',
@@ -91,7 +92,6 @@ $pages = array('manage-stickers',
     'bank-receipts',
     'video-settings',
     'manage-website-ads',
-
     'manage-success-stories',
     'add-success-stories',
     'edit-success-stories',
@@ -182,7 +182,6 @@ if ($is_admin == false) {
 //        exit();
 //    }
 }
-
 
 $page_loaded = '';
 if( $page == 'requests.php' ){
@@ -318,7 +317,16 @@ if (empty($page_loaded)) {
                     <li <?php echo ($page == 'deletevideo') ? 'class="active"' : ''; ?>>  
                     <a href="<?php echo Wo_LoadAdminLinkSettings('deletevideo'); ?>">
                     <i class="material-icons">perm_media</i>
-                    <span>deletevideo</span></a>
+                   <span>deletevideo</span></a>
+                            
+                            
+                        </a>
+                    </li>
+
+                    <li <?php echo ($page == 'videos') ? 'class="active"' : ''; ?>>  
+                    <a href="<?php echo Wo_LoadAdminLinkSettings('videos'); ?>">
+                    <i class="material-icons">perm_media</i>
+                    <span>videos</span></a>
                             
                             
                         </a>
