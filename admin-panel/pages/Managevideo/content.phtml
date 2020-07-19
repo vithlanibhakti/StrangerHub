@@ -1,0 +1,60 @@
+<script>
+
+</script><?php
+    
+    include("config.php");
+		
+	
+?>
+<!doctype html>
+<html>
+    <head>
+        <style>
+            video{
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+          
+        <?php
+       $q="SELECT id,user_id,video_file FROM mediafiles where is_video='1' ORDER BY id DESC";
+	$result=mysqli_query($con,$q);
+    if($result === FALSE)
+   {
+       die("Query Failed!".mysqli_error().$result);
+   }
+
+   echo "<table border=3>";
+   echo "<center>	
+   <th style='padding-left:10px;padding-right:10px;'>id</th>
+   <th style='padding-left:10px;padding-right:10px;'>user_id</th>
+    <th style='padding-left:10px;padding-right:10px;'>videofile</th>
+   <th style='padding-left:20px;padding-right:20px;'>Delete</th>
+   
+   </center>";
+   while($row=mysqli_fetch_assoc($result))
+   {
+       echo "<tr>";
+       $location = $row['video_file'];    
+       //echo $location."<br>";
+  
+      //echo "<video src='Script/upload/videos/2020/07/CaMqwz3fSFAgqUkK6pz4.mp4' controls width='320px' height='200px' >";    
+?>
+ <?php
+       foreach($row as $v)
+       {
+           echo "<td style='padding:5px;'>".$v."</td>";
+       }
+           echo "<td> <a href='deletevideo.php?id=".$row['id']."'>Delete</a></td>";
+       echo "</tr>";
+   }
+   echo "</table>";
+?>
+          
+
+        </div>
+
+    </body>
+</html>

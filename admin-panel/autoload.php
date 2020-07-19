@@ -63,6 +63,8 @@ $pages = array('manage-stickers',
     'manage-invitation-keys',
     'backups',
     'insertvideo',
+    'Managevideo',
+    'deletevideo',
     'manage-custom-pages',
     'add-new-custom-page',
     'edit-custom-page',
@@ -295,10 +297,28 @@ if (empty($page_loaded)) {
                     </li>
                     <?php //} ?>
                     
+                    <!-- <li <?php echo ($page == 'Managevideo') ? 'class="active"' : ''; ?>>  
+                    <a href="<?php echo Wo_LoadAdminLinkSettings('Managevideo'); ?>">
+                    <i class="material-icons">perm_media</i>
+                    <span>Managevideo</span></a>
+                            
+                            
+                        </a>
+                    </li> -->
+
                     <li <?php echo ($page == 'insertvideo') ? 'class="active"' : ''; ?>>  
                     <a href="<?php echo Wo_LoadAdminLinkSettings('insertvideo'); ?>">
                     <i class="material-icons">perm_media</i>
                     <span>insertvideo</span></a>
+                            
+                            
+                        </a>
+                    </li>
+                   
+                    <li <?php echo ($page == 'deletevideo') ? 'class="active"' : ''; ?>>  
+                    <a href="<?php echo Wo_LoadAdminLinkSettings('deletevideo'); ?>">
+                    <i class="material-icons">perm_media</i>
+                    <span>deletevideo</span></a>
                             
                             
                         </a>
@@ -740,12 +760,12 @@ if (empty($page_loaded)) {
                             <span>Changelogs</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="http://docs.quickdatescript.com/#faq" target="_blank">
                             <i class="material-icons">more_vert</i>
                             <span>FAQs</span>
                         </a>
-                    </li>
+                    </li> -->
                     <?php } ?>
                 </ul>
             </div>

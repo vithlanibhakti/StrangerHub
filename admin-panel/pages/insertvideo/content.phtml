@@ -23,7 +23,8 @@ $videos=$_POST['videos'];
                 
                 // Check file size
                 if(($_FILES['file']['size'] >= $maxsize) || ($_FILES["file"]["size"] == 0)) {
-                    echo "File too large. File must be less than 5MB.";
+                    
+					echo '<script>alert("File too large. File must be less than 5MB..")</script>'; 
                 }else{
                     // Upload
                     if(move_uploaded_file($_FILES['file']['tmp_name'],$target_file)){
@@ -31,7 +32,9 @@ $videos=$_POST['videos'];
                         $query = "INSERT INTO videos(name,location,id) VALUES('".$name."','".$target_file."','".$videos."')";
 
                         mysqli_query($con,$query);
-                        echo "Upload successfully.";
+                        
+						echo '<script>alert("Upload successfully.")</script>'; 
+
                     }
                 }
 
@@ -44,7 +47,8 @@ $videos=$_POST['videos'];
     </head>
     <body>
         <form method="post" action="" enctype='multipart/form-data'>
-            <input type='file' name='file' />
+            <h3>Please insert the video size below 5MB and It must be in "mp4","avi","3gp","mov","mpeg"</h3>
+			<input type='file' name='file' />
             
 			                  <select name="videos" required>
                                 <?php 

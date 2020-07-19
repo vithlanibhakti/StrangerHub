@@ -526,10 +526,6 @@ if($rowcount >= '1')
         </div> 
     </div> 
       
-        
-<?php } 
-else {echo "video not inserted by vendor";}
-?>      
                     <div class="about_block"> <!-- Profile Info -->
                         <h4><?php echo __( 'Profile Info ' );?></h4>
 						

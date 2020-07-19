@@ -134,7 +134,7 @@ to {transform: rotate(360deg) scale(1);}
 .parallax-container.header_bg .btn-large.btn-flat:hover{color:#fff}
 
 /*Top Filters Bar*/
-.dt_filters{border-radius: 5px;box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);padding: 1.9rem 2rem 0.8rem;margin: -42px auto 20px;position: relative; width:max-content; height:90px}
+.dt_filters{border-radius: 5px;box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);padding: 1.9rem 2rem 0.8rem;margin: -32px auto 22px;position: relative; width:max-content; height:90px}
 .dt_filters .row{margin-bottom:0;display: flex;justify-content: center;flex-wrap: wrap;}
 .dt_filters .row .col.s2 {margin: 1rem 12px;flex: 1;}
 .dt_filters .row .input-field>label{color: rgba(255, 255, 255, 0.8);}
