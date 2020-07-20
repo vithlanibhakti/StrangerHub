@@ -304,7 +304,7 @@ if (empty($page_loaded)) {
                             
                         </a>
                     </li> -->
-
+<!-- 
                     <li <?php echo ($page == 'insertvideo') ? 'class="active"' : ''; ?>>  
                     <a href="<?php echo Wo_LoadAdminLinkSettings('insertvideo'); ?>">
                     <i class="material-icons">perm_media</i>
@@ -313,7 +313,7 @@ if (empty($page_loaded)) {
                             
                         </a>
                     </li>
-                   
+                    -->
                     <li <?php echo ($page == 'deletevideo') ? 'class="active"' : ''; ?>>  
                     <a href="<?php echo Wo_LoadAdminLinkSettings('deletevideo'); ?>">
                     <i class="material-icons">perm_media</i>
@@ -322,7 +322,7 @@ if (empty($page_loaded)) {
                             
                         </a>
                     </li>
-
+<!-- 
                     <li <?php echo ($page == 'videos') ? 'class="active"' : ''; ?>>  
                     <a href="<?php echo Wo_LoadAdminLinkSettings('videos'); ?>">
                     <i class="material-icons">perm_media</i>
@@ -331,7 +331,7 @@ if (empty($page_loaded)) {
                             
                         </a>
                     </li>
-                   
+                    -->
                     <?php
                     if ($is_admin == true
                         ||
