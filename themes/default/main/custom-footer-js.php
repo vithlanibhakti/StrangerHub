@@ -336,9 +336,10 @@
             script.type = 'text/javascript';
             script.onload = script.onreadystatechange = function() {
                 Stripe.setPublishableKey('<?php echo $config->stripe_id;?>');
-
+                debugger;
                 $('#stripe_button_pro').attr('disabled', 'true');
                 $('#stripe_button_pro').text("<?php echo __('Please wait..');?>");
+                //alert("here");
                 stripe_array['stripe_name'] = $('#stripe_name').val();
                 stripe_array['stripe_email'] = $('#stripe_email').val();
                 stripe_array['stripe_number'] = $('#stripe_number').val();

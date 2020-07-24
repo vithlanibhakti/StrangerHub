@@ -478,8 +478,8 @@ nav .header_user {
                         ?>
                     </div>
                     <?php } ?>
-      
-                    <?php 
+                    
+<?php 
 //echo $profile->username;
 $name=$profile->username;
     include("config.php");
@@ -488,22 +488,17 @@ $name=$profile->username;
 		{
 			foreach($row as $id)
 			{
-				//echo "<br>".$id;
+			//echo "<br>".$id;
 			}
 		}
-		$fetchVideos = mysqli_query($con, "SELECT video_file FROM mediafiles where user_id='$id' AND is_video='1' ORDER BY id DESC");
-        $rowcount=mysqli_num_rows($fetchVideos);
-        
+		$fetchVideos = mysqli_query($con, "SELECT video_file FROM mediafiles where user_id='$id' AND is_video='1'");
         while($row = mysqli_fetch_assoc($fetchVideos)){
             $location = $row['video_file'];    
         
-	//	echo $location;
-        //echo "<video src='".$location."' id='Geeks3' controls width='320px' height='200px' >";    
-        }
-if($rowcount >= '1')
-{
+		//echo $location;
+           // echo "<video src='".$location."' id='Geeks3' controls width='320px' height='200px' >";
         ?>
-    
+        
 	<div class="vew_profile">
    	<div class="bs-example"> 
             <a href="#Geeks2"
@@ -518,7 +513,7 @@ if($rowcount >= '1')
                         </div> 
                         </div> 
                         <div class="modal-body"> 
-   						<video src='<?php echo $location; ?>' id='Geeks3' controls width='320px' height='200px' >						
+   						<video src='<?php echo $location; ?>' id='Geeks3' controls loop width='320px' height='200px' >						
                             </iframe> 
                         </div> 
                     </div> 
@@ -526,6 +521,9 @@ if($rowcount >= '1')
         </div> 
     </div> 
       
+        <?php
+        }
+		?> 
                     <div class="about_block"> <!-- Profile Info -->
                         <h4><?php echo __( 'Profile Info ' );?></h4>
 						

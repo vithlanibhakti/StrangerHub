@@ -560,7 +560,7 @@ if($rowcount >= '1')
                         </div> 
                         </div> 
                         <div class="modal-body"> 
-   						<video src='<?php echo $location; ?>' id='Geeks3' controls width='320px' height='200px' >						
+   						<video src='<?php echo $location; ?>' id='Geeks3' controls loop width='320px' height='200px' >						
                             </iframe> 
                         </div> 
                     </div> 
@@ -1036,9 +1036,12 @@ if($rowcount >= '1')
                 <div id="img_upload_progress_bar" class="determinate progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
             </div>
         </div>
+
         <button class="modal-close waves-effect btn-flat"><?php echo __( 'Close' );?></button>
         <button class="waves-effect waves-light btn-flat btn_primary white-text" disabled id="btn-upload-video-file" data-selected=""><?php echo __( 'Upload' );?></button>
+
     </div>
+    <br><br>        <h4> NOTE: Video size must be below 2MB and it must be in MP4.</h4>
 </div>
 
 
@@ -1052,6 +1055,7 @@ if($rowcount >= '1')
                 if(typeof $('#video_thumbnail')[0].files[0] !== "undefined") {
                     formData.append("video_thumbnail", $('#video_thumbnail')[0].files[0], $('#video_thumbnail')[0].files[0].value);
                 }
+                
                 console.log(formData);
 
             $.ajax({

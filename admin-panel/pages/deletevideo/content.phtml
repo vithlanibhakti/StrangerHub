@@ -52,7 +52,7 @@ mysqli_close($con);
                               <th style='padding-left:10px;padding-right:10px;'>User_id</th>
                               <th style='padding-left:10px;padding-right:10px;'>is_video</th>
                               <th style='padding-left:10px;padding-right:10px;'>video_File</th>
-                              <th style='padding-left:10px;padding-right:10px;'>video</th>
+                              <!--<th style='padding-left:10px;padding-right:10px;'>video</th>-->
 
                               <th style='padding-left:20px;padding-right:20px;'>Action</th>
                               
@@ -65,7 +65,7 @@ mysqli_close($con);
 				echo "<td>" . $row['user_id'] . "</td>";
 				echo "<td>" . $row['is_video'] . "</td>";
 				echo "<td>" . $row['video_file'] . "</td>";
-          echo "<td><video src='".$row['video_file']."'  controls width='320px' height='200px' ></td>";    
+          //echo "<td><video src='".$row['video_file']."'  controls width='320px' height='200px' ></td>";    
           echo "<td> <a class='btn btn-danger waves-effect waves-light' href='deletevideo?id=".$row['id']."' >Delete</a></td>";
           
 //        echo "<td><button class='btn btn-danger waves-effect waves-light' id='delete'>DELETE</button></td>";

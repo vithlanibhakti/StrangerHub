@@ -16,6 +16,7 @@
                         <div class="form-group form-float">
                             <div class="form-line focused">
                                 <input type="text" name="bag_of_credits_amount" class="form-control" value="<?php echo $wo['config']['bag_of_credits_amount']?>">
+                                
                                 <label class="form-label">Points</label>
                             </div>
                         </div>
@@ -73,6 +74,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="col-lg-3 col-md-3">
             <div class="card">
                 <div class="header">
@@ -120,6 +122,67 @@
 
                         <input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession();?>">
                         <button type="submit" class="btn btn-primary m-t-15 waves-effect">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <?php  include("config.php");
+        session_start();
+              $sql=mysqli_query($con,"SELECT * from vendorpremium ");
+                              while($row=mysqli_fetch_assoc($sql))
+                                    {
+                                        $silver= $row['silver'];
+                                        $gold= $row['gold'];
+                                        $premium= $row['premium'];
+                                        
+                                        // $silverconfig = $_SESSION["silver"] = "$silver";
+                                        // $goldconfig = $_SESSION["gold"] = "$gold";
+                                        // $premiumconfig = $_SESSION["premium"] = "$premium";
+                                        //echo $premiumconfig;
+                                       
+                                    }
+        ?>
+
+        <div class="col-lg-3 col-md-3">
+            <div class="card">
+                <div class="header">
+                    <h2>Premium Vendor settings</h2>
+                </div><?php  echo $_SESSION[$silver] ;?>
+                <?php echo $wo['config']['silver_pro_plan']?>
+                <div class="body">
+                    <div class="alert alert-success site-settings-alert2"></div>
+                    <form class="site-settings6" method="POST">
+                        
+                        <label for="user_registration">Silver</label><div class="clearfix"></div><br>
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <input type="text" name="silver_pro_plan" id="silver_pro_plan" class="form-control" value="<?php echo $silver?>">
+                                <label class="form-label">Price <?php echo $wo['config']['currency_symbol']?></label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+
+                        <label for="user_registration">Gold</label><div class="clearfix"></div><br>
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <input type="text" name="gold_pro_plan" id="gold_pro_plan" class="form-control" value="<?php echo $gold?>">
+                                <label class="form-label">Price <?php echo $wo['config']['currency_symbol']?></label>
+                            </div>
+                        </div>
+                        <br>
+
+                        <label for="user_registration">Premium</label><div class="clearfix"></div><br>
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <input type="text" name="premium_pro_plan" id="premium_pro_plan" class="form-control" value="<?php echo $premium?>">
+                                <label class="form-label">Price <?php echo $wo['config']['currency_symbol']?></label>
+                            </div>
+                        </div>
+                        <?php echo "<a href='Script/admin-panel/update.php'>Up</a>"?>
+
+                        <input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession();?>">
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" id="update" name="update">Save</button>
                     </form>
                 </div>
             </div>
@@ -251,7 +314,7 @@ $(function() {
             }
         }
     });
-
+    
     var form_site_settings2 = $('form.site-settings2');
     form_site_settings2.ajaxForm({
         url: Wo_Ajax_Requests_File() + '?f=admin_setting&s=update_general_setting&p=site-features',
@@ -324,6 +387,28 @@ $(function() {
         }
     });
 
+    $("#update").click(function(e) {
+    e.preventDefault();
+    var silvervalue = $('#silver_pro_plan').val();
+    var goldvalue = $('#gold_pro_plan').val();
+    var premiumvalue = $('#premium_pro_plan').val();
+    debugger;
+    $.ajax({
+        type: "POST",
+        url: update(),
+        data:{
+            premiumvalue : premiumvalue
+		 	},
+       
+        success: function(result) {
+            alert('ok');
+        },
+        error: function(result) {
+            alert('error');
+        }
+        
+        });
+    });
 });
 
 </script>

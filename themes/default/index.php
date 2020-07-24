@@ -120,7 +120,7 @@ position: relative ;
 												$username = $row['username'];
 												
 												 ?>
-												 <a href="<?php echo $site_url;?>/@<?php echo $username;?>" data-ajax="/@<?php echo $username;?>">
+				 <a href="<?php echo $site_url;?>/@<?php echo $username;?>" data-ajax="/@<?php echo $username;?>">
 										
 										<span class="videoContainer">
 																		<img src="<?php echo $location; ?>" alt="<?php echo $username;?>"  class="circle over circ xuser">
