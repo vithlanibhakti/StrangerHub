@@ -26,7 +26,8 @@
 									if($role == 'vendor')
 									{
 									//echo "vendor login";
-									?></div>
+									?>
+									</div>
 									</div>
 									<?php }
 									else{

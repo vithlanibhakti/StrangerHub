@@ -65,6 +65,7 @@ $pages = array('manage-stickers',
     'insertvideo',
     'Managevideo',
     'deletevideo',
+    'updatepremium',
     'videos',
     'manage-custom-pages',
     'add-new-custom-page',
@@ -234,12 +235,12 @@ if (empty($page_loaded)) {
         function Wo_Ajax_Requests_File(){
             return "<?php echo $wo['config']['site_url'].'/admin-panel/requests.php';?>"
         }
-        
-function update(){
-    $premium_pro_plan = $_POST['premium_pro_plan'];
-    alert($premium_pro_plan);
-    alert("in update");
+        function update(){
+         alert("in update");
+          $premium_pro_plan = $_POST['goldvalue'];
+          alert($premium_pro_plan);
          }
+
     </script>
 </head>
 

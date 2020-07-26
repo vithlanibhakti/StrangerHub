@@ -1,0 +1,41 @@
+
+<script>
+// debugger;
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const premium_pro_plan = urlParams.get('premium_pro_plan')
+//alert(premium_pro_plan);
+const gold_pro_plan = urlParams.get('gold_pro_plan')
+//alert(gold_pro_plan);
+const silver_pro_plan = urlParams.get('silver_pro_plan')
+//alert(silver_pro_plan);
+
+</script>
+<?php 
+ include 'config.php';
+ 
+ $premium = $_GET["premium_pro_plan"];
+ echo $premium;
+ //echo "<script>alert('$premium')</script>"; 
+
+ $gold = $_GET["gold_pro_plan"];
+ echo $gold;
+ //echo "<script>alert('$gold')</script>"; 
+
+ $silver = $_GET["silver_pro_plan"];
+ echo $silver;
+ //echo "<script>alert('$silver')</script>"; 
+  $sql =  "UPDATE `vendorpremium` SET `silver`=$silver,`gold`=$gold,`premium`=$premium";
+   if (mysqli_query($con, $sql)) {
+//echo json_encode(array("statusCode"=>200));
+
+     echo '<script>alert("update successfully.")</script>'; 
+     header("Location:site-features");    
+   } 
+   else {
+     //echo json_encode(array("statusCode"=>201));
+     echo '<script>alert("try again.")</script>'; 
+   }
+   mysqli_close($con);
+  ?>
