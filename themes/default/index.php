@@ -123,7 +123,7 @@ position: relative ;
 				 <a href="<?php echo $site_url;?>/@<?php echo $username;?>" data-ajax="/@<?php echo $username;?>">
 										
 										<span class="videoContainer">
-																		<img src="<?php echo $location; ?>" alt="<?php echo $username;?>"  class="circle over circ xuser">
+							<img src="<?php echo $location; ?>" alt="<?php echo $username;?>"  class="circle over circ xuser">
 										<img src="play-btn.png" height='100' width='100' alt="play" class="playBtn under">
 														</span>
 													</a>

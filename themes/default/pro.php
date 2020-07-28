@@ -17,7 +17,7 @@
                                        if($role != 'vendor')
                                        {
                                        ?>
-<!-- Premium  -->
+<!-- Premium user -->
 <div class="container page-margin find_matches_cont">
 	<div class="row r_margin">
 		<div class="col l3">
@@ -273,7 +273,7 @@
     </div>
 </div>
                                     <?php }  
-                                   
+// Vendor premium                                   
 else{  ?>
 
 <div class="container page-margin find_matches_cont">
@@ -310,7 +310,7 @@ else{  ?>
                             
 							<p>
 								<label>
-									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $silver;?>" data-price="<?php echo $silver;?>" checked />
+									<input class="with-gap" name="pro_plan_vendor" type="radio" value="<?php echo $silver;?>" data-price="<?php echo $silver;?>" checked />
 									<span class="pln_name">
 										<span class="pln_popular"><span><?php echo __( 'Most popular' );?></span>
                                         <span class="pln_popular_tail"></span></span>
@@ -321,7 +321,7 @@ else{  ?>
 							</p>
 							<p>
 								<label>
-									<input class="with-gap" name="pro_plan" type="radio" value="<?php $gold;?>" data-price="<?php echo $gold;?>"/>
+									<input class="with-gap" name="pro_plan_vendor" type="radio" value="<?php $gold;?>" data-price="<?php echo $gold;?>"/>
 									<span class="pln_name">
 										<span class="duration">Gold</span>
 										<span class="price"><?php echo $config->currency_symbol . $gold;?></span>
@@ -330,7 +330,7 @@ else{  ?>
 							</p>
 							<p>
 								<label>
-									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $premium;?>" data-price="<?php echo $premium;?>"/>
+									<input class="with-gap" name="pro_plan_vendor" type="radio" value="<?php echo $premium;?>" data-price="<?php echo $premium;?>"/>
 									<span class="pln_name">
 										<span class="duration">Premium</span>
 										<span class="price"><?php echo $config->currency_symbol . $premium;?></span>
@@ -576,6 +576,27 @@ else{  ?>
             }
         }
     }
+
+    function getDescription() {
+        var plans = document.getElementsByName('pro_plan_vendor');
+        for (index=0; index < plans.length; index++) {
+            if (plans[index].checked) {
+                return plans[index].value;
+                break;
+            }
+        }
+    }
+
+    function getPrice() {
+        var plans = document.getElementsByName('pro_plan_vendor');
+        for (index=0; index < plans.length; index++) {
+            if (plans[index].checked) {
+                return plans[index].getAttribute('data-price');
+                break;
+            }
+        }
+    }
+
 
     document.getElementById('paypal').addEventListener('click', function(e) {
         $.post(window.ajax + 'paypal/generate_link', {description:getDescription(), amount:getPrice(), mode: "premium-membarship"}, function (data) {

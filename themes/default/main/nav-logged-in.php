@@ -3,7 +3,8 @@
         exit();
     }
 ?>
-    <?php //require( $theme_path . 'main' . $_DS . 'onesignal.php' );?>
+    <?php 
+    //require( $theme_path . 'main' . $_DS . 'onesignal.php' );?>
     <!-- Header  -->
 		<nav role="navigation" id="nav-logged-in">
             <div class="nav-wrapper container">
@@ -17,12 +18,61 @@
                         <img src="<?php echo $config->sitelogo;?>" alt="" data-default="" data-light="">
                     </a>
                 </div>
+<?php                if( isset( $_SESSION['JWT'] ) ){
+	$profile = auth();
+}else{
+	exit();
+}
+	$guest= $profile->username;
+echo $guest;
+// echo "<script>alert('$guest')</script>"; 
+include("config.php");
+$sql=mysqli_query($con,"SELECT role from users where username='$guest'");
+						  while($row=mysqli_fetch_assoc($sql))
+								{
+									foreach($row as $role)
+									{
+                                  //      echo "<script>alert('$role')</script>"; 
+									}
+									
+								}
+                    
+?>
+
                 <?php if( $profile->verified == 1 ){?>
                     <ul class="left header_home_link hide-on-med-and-down">
+                    <?php if($role != 'vendor')
+                    {
+                        ?>
                         <li>
                             <a href="<?php echo $site_url;?>/find-matches" data-ajax="/find-matches"><?php echo __( 'Find Matches' );?></a>
                         </li>
-
+                    <?php  } else {
+  $col=mysqli_query($con,"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'vendorpremium' and COLUMN_NAME != 'id' ORDER BY ORDINAL_POSITION");
+  while($row2 = mysqli_fetch_assoc($col)){  
+    $COLUMN_NAME = $row2['COLUMN_NAME'];
+    //  echo "<script>alert('$COLUMN_NAME')</script>"; 
+      
+    }
+                        ?>
+                        <li>
+                     <a>upgrade your profile </a>   
+                <!-- <a href="<?php echo $site_url;?>/find-matches" data-ajax="/find-matches">upgrade your profile : -->
+                 <?php
+            $col=mysqli_query($con,"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'vendorpremium' and COLUMN_NAME != 'id' ORDER BY ORDINAL_POSITION");
+            while($row2 = mysqli_fetch_assoc($col))
+            {
+                  $COLUMN_NAME = $row2['COLUMN_NAME'];
+                  ?>
+             <li>
+               <a href="<?php echo $site_url;?>/pro" data-ajax="/pro" class="prem"><span><?php echo $COLUMN_NAME;?></span></a>
+                      </li>
+                 <?php //echo $COLUMN_NAME."&nbsp";  
+            } 
+    ?></a>
+                
+                        </li>
+                    <?php } ?>
                         <?php if( $config->pro_system == 1 ) { ?>
 
                             <?php if( $profile->is_pro <> 1 ) { ?>

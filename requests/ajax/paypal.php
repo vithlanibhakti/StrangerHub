@@ -80,7 +80,7 @@ Class Paypal extends Aj {
                     }
                 } else if ($mode == 'premium-membarship') {
                     if ($price == self::Config()->weekly_pro_plan) {
-                        $membershipType = 1;
+                        $membershipType = 1; 
                     } else if ($price == self::Config()->monthly_pro_plan) {
                         $membershipType = 2;
                     } else if ($price == self::Config()->yearly_pro_plan) {

@@ -60,7 +60,7 @@ nav .header_user {
                 if( $paymentlist->pro_plan > 0 ){
                     if( $paymentlist->pro_plan == 1 ){
                         echo __('WEEKLY');
-                    }
+                    } 
                     if( $paymentlist->pro_plan == 2 ){
                         echo __('MONTHLY');
                     }

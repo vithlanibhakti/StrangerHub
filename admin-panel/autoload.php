@@ -235,11 +235,11 @@ if (empty($page_loaded)) {
         function Wo_Ajax_Requests_File(){
             return "<?php echo $wo['config']['site_url'].'/admin-panel/requests.php';?>"
         }
-        function update(){
-         alert("in update");
-          $premium_pro_plan = $_POST['goldvalue'];
-          alert($premium_pro_plan);
-         }
+        // function update(){
+        //  alert("in update");
+        //   $premium_pro_plan = $_POST['goldvalue'];
+        //   alert($premium_pro_plan);
+        //  }
 
     </script>
 </head>
@@ -324,7 +324,7 @@ if (empty($page_loaded)) {
                     <li <?php echo ($page == 'deletevideo') ? 'class="active"' : ''; ?>>  
                     <a href="<?php echo Wo_LoadAdminLinkSettings('deletevideo'); ?>">
                     <i class="material-icons">perm_media</i>
-                   <span>deletevideo</span></a>
+                   <span>Managevideo</span></a>
                             
                             
                         </a>
