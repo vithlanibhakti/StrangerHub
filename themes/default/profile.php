@@ -298,7 +298,9 @@ nav .header_user {
                             <a href="javascript:void(0);" id="btn_open_private_conversation" data-ajax-post="/chat/open_private_conversation" data-ajax-params="from=<?php echo $profile->id;?>&web_device_id=<?php echo $profile->web_device_id;?>" data-ajax-callback="open_private_conversation" title="<?php echo __( 'Message' );?>">
                                 <i class="fa fa-camera" style="font-size:24px"></i>
                                                      </a>
-                            <?php }?>
+                            <?php }
+                            
+                            ?>
                             
                             <?php if( $profile->src !== 'Fake' ){?>
                             <a href="javascript:void(0);" id="btn_open_private_conversation" data-ajax-post="/chat/open_private_conversation" data-ajax-params="from=<?php echo $profile->id;?>&web_device_id=<?php echo $profile->web_device_id;?>" data-ajax-callback="open_private_conversation" title="<?php echo __( 'Message' );?>">
@@ -491,7 +493,7 @@ $name=$profile->username;
 			//echo "<br>".$id;
 			}
 		}
-		$fetchVideos = mysqli_query($con, "SELECT video_file FROM mediafiles where user_id='$id' AND is_video='1'");
+		$fetchVideos = mysqli_query($con, "SELECT video_file FROM mediafiles where user_id='$id' AND is_video='1' AND is_disable='0'");
         while($row = mysqli_fetch_assoc($fetchVideos)){
             $location = $row['video_file'];    
         

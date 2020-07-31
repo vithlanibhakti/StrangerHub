@@ -1,4 +1,13 @@
-<style>#nav-not-logged-in,.page-footer{display: none !important;visibility: hidden !important;}</style>
+<style>#nav-not-logged-in,.page-footer{display: none !important;visibility: hidden !important;}
+.select-dropdown.dropdown-content li.selected {
+    background-color: #dc1374;
+}
+.select-wrapper .dropdown-content li>span {
+    font-size: 14px;
+    color: #0e0d0d;
+    line-height: 15px;
+}
+</style>
 <!-- Header  -->
 	<nav role="navigation">
         <div class="nav-wrapper container">
@@ -64,10 +73,9 @@
 								</div>
 								
 								<div class="input-field col s6">
-								
 									<select name="role" id="role" class="validate" value="" required>
 									<option value="user">User</option>
-									<option value="vendor">vendor</option>
+									<option value="vendor">Vendor</option>
 									</select>
 									<label for="role"><?php echo __( 'Role' );?></label>
 								</div>

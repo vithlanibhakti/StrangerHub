@@ -93,22 +93,36 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg>
                         </button>
                     </div>
+                   
                     <div class="chat_participant">
                         <div class="c_avatar">
                             <img src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" alt="User">
                         </div>
                         <div class="c_name">
-                            <a href="" target="_blank" id="chatfromuser"><span class="name"></span></a>
+                       
+                            <a href="" target="_blank" id="chatfromuser">
+
+                                <span class="name" >
+                                    </span>
+                           
+                    
+                                <!-- <span class="id" ></span></a> -->
+                                         <?php 
+                    echo  "<script> var abc=document.getElementsByClassName('name')[0].innerHTML;</script>"; 
+                    
+                    // echo "<script>alert(abc)</script>";
+                 ?>
+                                <!-- <?php 
+                             //      echo "<script>document.getElementsByClassName('name[0]').innerHTML;</script>";
+                                //   echo "<script>document.writeln(id);</script>"; ?> -->
                             <span class="time ajax-time last_seen" title=""></span>
                         </div>
                     </div>
+
+
                     <div class="chat_toolbar">
 						<div>
-						<button type="button" class="dropdown-trigger btn btn-flat close waves-effect" data-target="cht_more_opts_dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" /></svg></button>
-						<ul id="cht_more_opts_dropdown" class="dropdown-content">
-							<li><a href="javascript:void(0);" id="deletechatconversations"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"></path></svg> <?php echo __('Delete chat');?></a></li>
-
-                            <?php
+                        <?php
                                 $video_link = false;
                                 $audio_link = false;
 
@@ -156,13 +170,23 @@
                                 }
                             ?>
 
-                            <?php if ($video_link == true) { ?>
-                                <li><a href="javascript:void(0);" onclick="Wo_GenerateVideoCall(<?php echo auth()->id;?>)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z"></path></svg> <?php echo __('Video call');?></a></li>
+                            <?php if ($video_link == true) { 
+                                   
+                                   ?>
+                                
+                                
+                            <!-- <a href="javascript:void(0);" onclick="Wo_GenerateVideoCall(<?php echo auth()->id;?>)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z"></path></svg> <?php echo __('Video call');?></a> -->
+                        <a href="<?php echo $site_url;?>/vcpro" data-ajax="/vcpro"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z"></path></svg></span><?php echo __( 'Video call' );?></a>
                             <?php } ?>
                             <?php if ($audio_link == true) { ?>
-                                <li><a href="javascript:void(0);" onclick="Wo_GenerateVoiceCall(<?php echo auth()->id;?>)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"></path></svg> <?php echo __('Audio call');?></a></li>
+                                <a href="javascript:void(0);" onclick="Wo_GenerateVoiceCall(<?php echo auth()->id;?>)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"></path></svg> <?php echo __('Audio call');?></a>
                             <?php } ?>
 
+						<button type="button" class="dropdown-trigger btn btn-flat close waves-effect" data-target="cht_more_opts_dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" /></svg></button>
+						<ul id="cht_more_opts_dropdown" class="dropdown-content">
+							<li><a href="javascript:void(0);" id="deletechatconversations"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"></path></svg> <?php echo __('Delete chat');?></a></li>
+
+                           
 						</ul>
 						</div>
                         <button type="button" class="btn btn-flat close waves-effect modal-close">
@@ -195,6 +219,8 @@
                             <form method="POST" action="/chat/send_message" class="valign-wrapper" id="chat_message_form">
                                 <input type="hidden" name="to" value="" id="to_message"/>
                                 <div class="chat_f_textarea">
+
+
                                     <div class="chat_f_write">
                                         <textarea placeholder="<?php echo __('Type a message');?>" id="dt_emoji" name="text" class="hide"></textarea>
                                     </div>
@@ -262,3 +288,9 @@
         <div id="gifylist"></div>
     </div>
 </div>
+<script>
+// function myFunction() {
+//   var abc=  document.getElementsByClassName("name")[0].innerHTML;
+// alert(abc);
+// }
+</script> 

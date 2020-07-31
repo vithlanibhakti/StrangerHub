@@ -26,18 +26,6 @@
                 echo 'LIFETIME';
             }
         }
-        else if( $wo['paymentlist']->pro_plan_vendor > 0 ){
-            if( $wo['paymentlist']->pro_plan_vendor == 1 ){
-                echo 'SILVER';
-            }
-            if( $wo['paymentlist']->pro_plan_vendor == 2 ){
-                echo 'GOLDEN';
-            }
-            if( $wo['paymentlist']->pro_plan_vendor == 3 ){
-                echo 'PREMIUM';
-            }
-           
-        }
         if($wo['paymentlist']->credit_amount > 0 ){
             echo $wo['paymentlist']->credit_amount . ' Credits';
         }

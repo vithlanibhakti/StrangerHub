@@ -1,20 +1,23 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <?php 
+ global $config;
+ $site_url   = $config->uri;
 
 include 'config.php';
 $id=$_GET['id'];
+$name=$_GET['name'];
 //echo $id;
-if($id != '')
+if($id != '' && $name  == "delete")
 { 
 
-  $fetchVideos = mysqli_query($con, "SELECT video_file FROM mediafiles where id='$id' AND is_video = `1` ORDER BY id DESC");
-  while($row = mysqli_fetch_assoc($fetchVideos)){
-      $location = $row['location'];
+  // $fetchVideos = mysqli_query($con, "SELECT video_file FROM mediafiles where id='$id' AND is_video = `1` ORDER BY id DESC");
+  // while($row = mysqli_fetch_assoc($fetchVideos)){
+  //     $location = $row['location'];
       
-      echo "<div >";
-      echo "<video src='".$location."' controls width='320px' height='200px' >";
-      echo "</div>";
-  }
+  //     echo "<div >";
+  //     echo "<video src='".$location."' controls width='320px' height='200px' >";
+  //     echo "</div>";
+  // }
 
 $sql = "DELETE FROM `mediafiles` WHERE  id=$id AND is_video='1'";
 if (mysqli_query($con, $sql)) {
@@ -29,6 +32,51 @@ else {
 }
 mysqli_close($con);
 }
+if($id != '' && $name  == "disable")
+{ 
+
+  $q="SELECT `is_disable` FROM `mediafiles` WHERE  `id` = $id";
+  $result=mysqli_query($con,$q);
+     if($result === FALSE)
+    {
+            die("Query Failed!".mysqli_error().$result);
+    }
+    while($row=mysqli_fetch_assoc($result))
+               {
+        
+        $user_disable= $row['is_disable'];
+        echo $user_disable;
+                 }
+                 if($user_disable == 1)
+                 {
+$sql = "UPDATE `mediafiles` SET `is_disable` = '0' WHERE  id=$id AND is_video='1'";
+if (mysqli_query($con, $sql)) {
+ 
+  header("Location:deletevideo");
+  echo '<script>alert("disable successfully.")</script>'; 
+  
+} 
+else {
+ 
+  echo '<script>alert("try again.")</script>'; 
+}
+                 }
+                 else{
+                  $sql = "UPDATE `mediafiles` SET `is_disable` = '1' WHERE  id=$id AND is_video='1'";
+                  if (mysqli_query($con, $sql)) {
+                    //echo json_encode(array("statusCode"=>200));
+                    header("Location:deletevideo");
+                    echo '<script>alert("disable successfully.")</script>'; 
+                    
+                  } 
+                  else {
+                    //echo json_encode(array("statusCode"=>201));
+                    echo '<script>alert("try again.")</script>'; 
+                  }
+                 }
+mysqli_close($con);
+
+}
 ?>
 <div class="container-fluid">
     <div class="block-header">
@@ -38,7 +86,7 @@ mysqli_close($con);
                     <div class="table-responsive1">
                             
                             <?php 
-                            $q="SELECT `id`, `user_id`,`is_video`, `video_file` FROM `mediafiles` WHERE  `is_video` = '1'";
+                            $q="SELECT `id`, `user_id`,`is_video`, `video_file`,`is_disable` FROM `mediafiles` WHERE  `is_video` = '1'";
                             $result=mysqli_query($con,$q);
                                if($result === FALSE)
                               {
@@ -49,10 +97,10 @@ mysqli_close($con);
                               echo "<center>	
                               <th style='padding-left:10px;padding-right:10px;'>id</th>
                               <th style='padding-left:10px;padding-right:10px;'>User_id</th>
+                              <th style='padding-left:10px;padding-right:10px;'>Username</th>
                               <th style='padding-left:10px;padding-right:10px;'>is_video</th>
                               <th style='padding-left:10px;padding-right:10px;'>video_File</th>
-                              <!--<th style='padding-left:10px;padding-right:10px;'>video</th>-->
-
+                              <th style='padding-left:10px;padding-right:10px;'>disable</th>
                               <th style='padding-left:20px;padding-right:20px;'>Action</th>
                               
                               </center>";
@@ -61,16 +109,28 @@ mysqli_close($con);
                              
         echo "<tr class'test'>";
 				echo "<td class='ids'>" . $row['id'] . "</td>";
-				echo "<td>" . $row['user_id'] . "</td>";
-				echo "<td>" . $row['is_video'] . "</td>";
-				echo "<td>" . $row['video_file'] . "</td>";
-          //echo "<td><video src='".$row['video_file']."'  controls width='320px' height='200px' ></td>";    
-          echo "<td> <a class='btn btn-danger waves-effect waves-light' href='deletevideo?id=".$row['id']."' >Delete</a></td>";
+        echo "<td>" . $row['user_id'] . "</td>";
+        $user_id= $row['user_id'];
+        $sql1  = mysqli_query($con, "SELECT * FROM `users` where id = $user_id  ");
+        while($row1 = mysqli_fetch_assoc($sql1)){
+        
+          $username = $row1['username'];
+        
+         }
+?>  <td><a href="<?php echo $site_url;?>/@<?php echo $username;?>"><?php echo $username;?> </td></a>
+                 
+  <!--       echo "<td>" . $username . "</td>"; -->
+  <?php	echo "<td>" . $row['is_video'] . "</td>";
+        echo "<td>" . $row['video_file'] . "</td>";
+        echo "<td>" . $row['is_disable'] . "</td>";
+        //echo "<td><video src='".$row['video_file']."'  controls width='320px' height='200px' ></td>";    
+          echo "<td> <a class='btn btn-danger waves-effect waves-light' href='deletevideo?id=".$row['id']."&name=delete' >Delete</a> <a class='btn btn-danger waves-effect waves-light' id='linkid' href='deletevideo?id=".$row['id']."&name=disable' >Enable/Disable</a></td>";
           
-//        echo "<td><button class='btn btn-danger waves-effect waves-light' id='delete'>DELETE</button></td>";
-
                                 echo "</tr>";
                               }
                               echo "</table>";
-                          ?>
+                            
+                                       ?>
+                                  
+
                               </div>

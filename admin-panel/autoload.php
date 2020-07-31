@@ -10,6 +10,7 @@ $pages = array('manage-stickers',
     'manage-gifts',
     'add-new-gift',
     'add-new-sticker',
+    'video',
     'manage-photos',
     'general-settings',
     'dashboard',
@@ -324,7 +325,7 @@ if (empty($page_loaded)) {
                     <li <?php echo ($page == 'deletevideo') ? 'class="active"' : ''; ?>>  
                     <a href="<?php echo Wo_LoadAdminLinkSettings('deletevideo'); ?>">
                     <i class="material-icons">perm_media</i>
-                   <span>Managevideo</span></a>
+                   <span>Manage Video</span></a>
                             
                             
                         </a>

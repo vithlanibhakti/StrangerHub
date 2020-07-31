@@ -2655,7 +2655,7 @@ class Users {
                 } else if ($realprice == $config->monthly_pro_plan) {
                     $membershipType = 2;
                 } else if ($realprice == $config->yearly_pro_plan) {
-                    $membershipType = 3; 
+                    $membershipType = 3;
                 } else if ($realprice == $config->lifetime_pro_plan) {
                     $membershipType = 4;
                 }

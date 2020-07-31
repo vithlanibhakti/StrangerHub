@@ -1690,9 +1690,9 @@ $sql=mysqli_query($con,"SELECT role from users where username='$guest'");
 								$pv="premium";
 								$permium = $pv;
                     ?>
-        <a href="<?php echo $site_url;?>/silvervendor" data-ajax="/silvervendor" >silver </a>
+        <!-- <a href="<?php echo $site_url;?>/silvervendor" data-ajax="/silvervendor" >silver </a>
         <a href="<?php echo $site_url;?>/goldvendor" data-ajax="/goldvendor" >gold </a>
-        <a href="<?php echo $site_url;?>/premiumvendor" data-ajax="/premiumvendor" >premium </a>
+        <a href="<?php echo $site_url;?>/premiumvendor" data-ajax="/premiumvendor" >premium </a> -->
 
                 				
 					    <!-- <span class="videoContainer">

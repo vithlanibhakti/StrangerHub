@@ -202,6 +202,7 @@ function _get_chat_conversation(id){
     // if( $('#btn_chat_f_send').hasClass('hide') ){
     //     return true;
     // }
+    //alert(id);
     let lastmsg = $('.messages:last').attr('data-lastid');
     let url = 'chat/get_chat_conversation/' + id;
     if( typeof lastmsg !== "undefined"){
@@ -449,8 +450,6 @@ function callback_open_conversation( data ){
             }
         }
 
-
-
         $('#vxd').val(data.to.id);
         $('#dfgetevxd').val(data.receiver);
         let cssId = 'emojionearea';
@@ -517,6 +516,7 @@ function callback_open_conversation( data ){
 
         $('.chat_participant .c_avatar img').attr( 'src', data.to.avater.avater );
         $('.chat_participant .c_name .name').html( data.to.full_name );
+        $('.chat_participant .c_name .id').html( data.to.id);
         $('.chat_participant .c_name .last_seen').html( $.timeago(data.to.lastseen_date) );
         $('.chat_participant .c_name .last_seen').attr( 'title', data.to.lastseen_date );
         $('#to_message').attr( 'value', data.receiver);
@@ -524,7 +524,12 @@ function callback_open_conversation( data ){
             $('#message_box').removeClass('open_list').addClass('open_chat');
             let body = $( '#message_box' ).find( '.chat_body_content' );
                 body.stop().animate({scrollTop:$( '.chat_body_content' )[0].scrollHeight}, 500, 'swing', function() {});
+        var abc=  document.getElementsByClassName("name")[0].innerHTML;
+        alert(abc);
+        var id=  document.getElementsByClassName("id")[0].innerHTML;
+        alert(id);
         });
+
         _get_chat_conversation(data.to.id);
         window._get_chatConversationsInterval = new Interval(function () {
             _get_chat_conversation(data.to.id);
@@ -541,8 +546,10 @@ function open_private_conversation( data ) {
         if( data.mode == 'credits' ) {
             $( '#buy_chat_credits' ).modal("open");
         }
-
+        debugger;
+        
         if( data.mode == 'chat' ) {
+            
             $( '#loader' ).css( 'display', 'block' );
             $( '.msg_chat' ).removeClass( 'hide' );
             $( '.msg_list' ).hide();
@@ -553,8 +560,10 @@ function open_private_conversation( data ) {
             $( '#message_box').modal({
                 dismissible: false,
                 onOpenEnd: function(){
-
                     callback_open_conversation(data);
+                   var abc=  document.getElementsByClassName("name")[0].innerHTML;
+         //   alert(abc);
+
                 },
                 onCloseEnd: function(){
                     if( $('.chat_body_content').html() !== '' ) {
@@ -568,6 +577,7 @@ function open_private_conversation( data ) {
                     $( '.msg_list' ).show();
                 }
             }).modal("open");
+            
         }
 
     }else{
@@ -575,7 +585,7 @@ function open_private_conversation( data ) {
         $('#chat_declined_modal').modal();
         $('#chat_declined_modal #chat_declined_modal_container').html(data.message);
         $('#chat_declined_modal').modal('open');
-
+        
     }
 }
 
