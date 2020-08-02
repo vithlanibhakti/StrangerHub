@@ -525,9 +525,9 @@ function callback_open_conversation( data ){
             let body = $( '#message_box' ).find( '.chat_body_content' );
                 body.stop().animate({scrollTop:$( '.chat_body_content' )[0].scrollHeight}, 500, 'swing', function() {});
         var abc=  document.getElementsByClassName("name")[0].innerHTML;
-        alert(abc);
+       // alert(abc);
         var id=  document.getElementsByClassName("id")[0].innerHTML;
-        alert(id);
+        //alert(id);
         });
 
         _get_chat_conversation(data.to.id);

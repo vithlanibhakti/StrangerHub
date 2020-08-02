@@ -1181,7 +1181,7 @@ from {left: -200px; width: 30%;}50% {width: 30%;}70% {width: 70%;}80% { left: 50
 
 /*Latest Users*/
 .xuser {width: 60px;height: 60px;object-fit: cover;margin: 5px 10px;box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.3);}
-
+.xvendor {width: 160px;height: 160px;object-fit: cover;margin: 5px 10px;box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.3);}
 /*Under Review*/
 .dt_usr_undr_rvw {width: 100%;position: relative;padding-bottom: 100%;}
 .dt_usr_undr_rvw img {filter: grayscale(1) blur(10px);border-radius: 5px;}

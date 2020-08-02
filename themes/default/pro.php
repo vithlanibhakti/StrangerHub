@@ -40,8 +40,19 @@
 										<span class="price"><?php echo $config->currency_symbol . (float)$config->weekly_pro_plan;?></span>
 									</span>
 								</label>
+                            </p>
+                            <p>
+								<label>
+									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo __( 'Weekly' );?>" data-price="<?php echo (float)$config->monthly_pro_plan;?>"/>
+									<span class="pln_name">
+                                    <span class="pln_popular"><span><?php echo __( 'Most popular' );?></span><span class="pln_popular_tail"></span></span>
+										<span class="duration"><?php echo __( 'Monthly' );?></span>
+										
+										<span class="price"><?php echo $config->currency_symbol . (float)$config->monthly_pro_plan;?></span>
+									</span>
+								</label>
 							</p>
-							<p>
+							<!-- <p>
 								<label>
 									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo __( 'Monthly' );?>" data-price="<?php echo (float)$config->monthly_pro_plan;?>" checked />
 									<span class="pln_name">
@@ -50,7 +61,7 @@
 										<span class="price"><?php echo $config->currency_symbol . (float)$config->monthly_pro_plan;?></span>
 									</span>
 								</label>
-							</p>
+							</p> -->
 							<p>
 								<label>
 									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo __( 'Yearly' );?>" data-price="<?php echo (float)$config->yearly_pro_plan;?>"/>

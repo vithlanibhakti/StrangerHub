@@ -44,8 +44,12 @@ $sql=mysqli_query($con,"SELECT role,id from users where username='$guest'");
                     {
                         ?>
                         <li>
-                            <a href="<?php echo $site_url;?>/find-matches" data-ajax="/find-matches"><?php echo __( 'Find Matches' );?></a>
+                            <a href="<?php echo $site_url;?>/find-matches" data-ajax="/find-matches">Filter by Agent's Category</a> 
+                            <!-- <a href="<?php echo $site_url;?>/find-matches" data-ajax="/find-matches">Filter by Agent's Category </a></li> -->
+                        <li>  <a href="<?php echo $site_url;?>/silvervendor" class="prem" data-ajax="/silvervendor">Silver</a>
                         </li>
+                        <li><a href="<?php echo $site_url;?>/goldvendor" class="prem" data-ajax="/goldvendor">Gold</a></li>
+                        <li><a href="<?php echo $site_url;?>/premiumvendor" class="prem" data-ajax="/premiumvendor">Premium</a></li>
                     <?php  } else {
 
                         ?>
