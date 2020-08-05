@@ -362,6 +362,40 @@
             $('#stripe_alert').html("<?php echo __('Please check your details');?>");
         }
     }
+    function SH_StripeRequestProvc(argument) {
+        if ($("#stripe_name").val() != '' && $("#stripe_email").val() != '' && $("#stripe_number").val() != '' && $("#stripe_month").val() != '' && $("#stripe_year").val() != '' && $("#stripe_cvc").val() != '' && $("#wallet_amount").val() != '') {
+            var script = document.createElement('script');
+            script.src = 'https://js.stripe.com/v2/';
+            script.type = 'text/javascript';
+            script.onload = script.onreadystatechange = function() {
+                Stripe.setPublishableKey('<?php echo $config->stripe_id;?>');
+                debugger;
+                $('#stripe_button_pro').attr('disabled', 'true');
+                $('#stripe_button_pro').text("<?php echo __('Please wait..');?>");
+               
+                stripe_array['stripe_name'] = $('#stripe_name').val();
+                stripe_array['stripe_email'] = $('#stripe_email').val();
+                stripe_array['stripe_number'] = $('#stripe_number').val();
+                stripe_array['stripe_month'] = $('#stripe_month').val();
+                stripe_array['stripe_year'] = $('#stripe_year').val();
+                stripe_array['stripe_cvc'] = $('#stripe_cvc').val();
+                stripe_array['amount'] = getPrice();
+                Stripe.createToken({
+                    number: $('#stripe_number').val(),
+                    exp_month: $('#stripe_month').val(),
+                    exp_year: $('#stripe_year').val(),
+                    cvc: $('#stripe_cvc').val()
+                }, SH_StripeResponseHandlerProvc);
+            };
+            let head  = document.getElementsByTagName('head')[0];
+            head.appendChild(script);
+
+        }
+        else{
+            $('#stripe_alert').html("<?php echo __('Please check your details');?>");
+        }
+    }
+   
     function SH_StripeResponseHandlerPro(status, response) {
         debugger;
         if (response.error) {
@@ -372,6 +406,40 @@
             stripe_array['token'] = response.id;
             debugger;
             $.post(window.ajax + 'stripe/handle', {
+                stripeToken: stripe_array['token'],
+                stripe_name: stripe_array['stripe_name'],
+                stripe_email: stripe_array['stripe_email'],
+                stripe_number: stripe_array['stripe_number'],
+                stripe_month: stripe_array['stripe_month'],
+                stripe_year: stripe_array['stripe_year'],
+                stripe_cvc: stripe_array['stripe_cvc'],
+                amount: stripe_array['amount'],
+                
+                description: getDescription(),
+                price: stripe_array['amount'],
+                payType: 'membership'
+            }, function (data) {
+                if (data.status == 200) {
+                    $('.prem').hide();
+                    $("#btnProSuccess").attr("data-ajax", data.location);
+                    $("#btnProSuccess").click();
+                } else {
+                    $('.modal-body').html('<i class="fa fa-spin fa-spinner"></i> <?php echo __('Payment declined');?> ');
+                }
+            });
+        }
+    }
+
+    function SH_StripeResponseHandlerProvc(status, response) {
+        debugger;
+        if (response.error) {
+            $('#stripe_alert').html(response.error.message);
+            $('#stripe_button_pro').removeAttr('disabled');
+            $('#stripe_button_pro').text("<?php echo __('Pay');?>");
+        } else {
+            stripe_array['token'] = response.id;
+            debugger;
+            $.post(window.ajax + 'stripe/handlevc', {
                 stripeToken: stripe_array['token'],
                 stripe_name: stripe_array['stripe_name'],
                 stripe_email: stripe_array['stripe_email'],

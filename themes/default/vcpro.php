@@ -119,7 +119,8 @@
                                     
 									<button id="stripe_pro_new" class="btn stripe valign-wrapper">
                                     <?php echo __( 'Card' );?> 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"></path></svg></button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"></path></svg></button>
 <!--									<button id="stripe_pro_btn" class="hide"></button>-->
                                     <?php if(!empty($config->bank_description)){?>
                                         <button id="bank_transfer" class="btn valign-wrapper bank">
@@ -230,7 +231,7 @@
                         <input id="stripe_cvc" type="text" class="form-control shop_input" autocomplete="off" placeholder="CVC" maxlength="3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-main" onclick="SH_StripeRequestPro()" id="stripe_button_pro"><?php echo __( 'Pay' );?></button>
+                        <button type="button" class="btn btn-main" onclick="SH_StripeRequestProvc()" id="stripe_button_pro"><?php echo __( 'Pay' );?></button>
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo __( 'Cancel' );?></button>
                     </div>
                 </form>
