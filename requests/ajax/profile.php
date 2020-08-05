@@ -1065,6 +1065,7 @@ Class Profile extends Aj {
                         'settings-delete',
                         'visits',
                         'silvervendor',
+                        'vcpro',
                         'goldvendor',
                         'premiumvendor',
                         'likes',

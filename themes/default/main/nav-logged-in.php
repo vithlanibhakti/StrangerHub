@@ -43,28 +43,20 @@ $sql=mysqli_query($con,"SELECT role,id from users where username='$guest'");
                     <?php if($role != 'vendor')
                     {
                         ?>
-                        <li>
-                            <a href="<?php echo $site_url;?>/find-matches" data-ajax="/find-matches">Filter by Agent's Category</a> 
-                            <!-- <a href="<?php echo $site_url;?>/find-matches" data-ajax="/find-matches">Filter by Agent's Category </a></li> -->
-                        <li>  <a href="<?php echo $site_url;?>/silvervendor" class="prem" data-ajax="/silvervendor">Silver</a>
-                        </li>
+                        <li><a href="<?php echo $site_url;?>/find-matches" data-ajax="/find-matches">Filter by Agent's Category</a> 
+                        <!-- <a href="<?php echo $site_url;?>/find-matches" data-ajax="/find-matches">Filter by Agent's Category </a></li> -->
+                        <li>  <a href="<?php echo $site_url;?>/silvervendor" class="prem" data-ajax="/silvervendor">Silver</a></li>
                         <li><a href="<?php echo $site_url;?>/goldvendor" class="prem" data-ajax="/goldvendor">Gold</a></li>
                         <li><a href="<?php echo $site_url;?>/premiumvendor" class="prem" data-ajax="/premiumvendor">Premium</a></li>
-                    <?php  } else {
-
-                        ?>
-                        <li>
-                     <a>upgrade your profile </a>   
+                    <?php  } 
+                    else { ?>
+                        <li><a>upgrade your profile </a>   
                 <!-- <a href="<?php echo $site_url;?>/find-matches" data-ajax="/find-matches">upgrade your profile : -->
                  <?php
-
-                    $col=mysqli_query($con,"SELECT amount,pro_plan FROM payments where user_id=$id");
+                   $col=mysqli_query($con,"SELECT amount,pro_plan FROM payments where user_id=$id");
                     while($row2 = mysqli_fetch_assoc($col)){  
                     $amount = $row2['amount'];
                     $pro_plan = $row2['pro_plan'];
-                      //echo "<script>alert('$amount')</script>"; 
-                    //echo $amount;
-                    
                     }
                     if($amount == '50')
                     {
@@ -72,6 +64,7 @@ $sql=mysqli_query($con,"SELECT role,id from users where username='$guest'");
             while($row2 = mysqli_fetch_assoc($col))
             {
                   $COLUMN_NAME = $row2['COLUMN_NAME'];
+                  echo "<script>alert($COLUMN_NAME)</script>"; 
                   ?>
              <li>
                <a href="<?php echo $site_url;?>/pro" data-ajax="/pro" class="prem"><span><?php echo $COLUMN_NAME;?></span></a>
@@ -97,7 +90,8 @@ $sql=mysqli_query($con,"SELECT role,id from users where username='$guest'");
                 
                         </li>
                     <?php } ?>
-                        <?php if( $config->pro_system == 1 ) { ?>
+
+                    <?php if( $config->pro_system == 1 ) { ?>
 
                             <?php if( $profile->is_pro <> 1 ) { ?>
 

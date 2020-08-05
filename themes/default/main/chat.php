@@ -107,11 +107,15 @@
                            
                     
                                 <!-- <span class="id" ></span></a> -->
-                                         <?php 
-                    echo  "<script> var abc=document.getElementsByClassName('name')[0].innerHTML;</script>"; 
+                 <!-- <?php 
+                    echo  "<script> var x = document.getElementsByClassName('name');  
+                                         var a=x.item(0).innerHTML;
+                                                 </script>"; 
+                    echo  "<script> var abc=document.getElementsByClassName('name');</script>"; 
+                    echo  "<script> var aNode = abc[0];</script>"; 
                     
-                    // echo "<script>alert(abc)</script>";
-                 ?>
+                     echo "<script>alert(aNode)</script>";
+                 ?> -->
                                 <!-- <?php 
                              //      echo "<script>document.getElementsByClassName('name[0]').innerHTML;</script>";
                                 //   echo "<script>document.writeln(id);</script>"; ?> -->
@@ -171,11 +175,8 @@
                             ?>
 
                             <?php if ($video_link == true) { 
-                                   
                                    ?>
-                                
-                                
-                            <!-- <a href="javascript:void(0);" onclick="Wo_GenerateVideoCall(<?php echo auth()->id;?>)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z"></path></svg> <?php echo __('Video call');?></a> -->
+                        <!-- <a href="javascript:void(0);" onclick="Wo_GenerateVideoCall(<?php echo auth()->id;?>)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z"></path></svg> <?php echo __('Video call');?></a> -->
                         <a href="<?php echo $site_url;?>/vcpro" data-ajax="/vcpro"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z"></path></svg></span><?php echo __( 'Video call' );?></a>
                             <?php } ?>
                             <?php if ($audio_link == true) { ?>

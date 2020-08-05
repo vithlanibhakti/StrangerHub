@@ -303,7 +303,7 @@
             $('#stripe_button').text("<?php echo __('Pay');?>");
         } else {
             stripe_array['token'] = response.id;
-
+                debugger;
             $.post(window.ajax + 'stripe/handle', {
                 stripeToken: stripe_array['token'],
                 stripe_name: stripe_array['stripe_name'],
@@ -363,13 +363,14 @@
         }
     }
     function SH_StripeResponseHandlerPro(status, response) {
+        debugger;
         if (response.error) {
             $('#stripe_alert').html(response.error.message);
             $('#stripe_button_pro').removeAttr('disabled');
             $('#stripe_button_pro').text("<?php echo __('Pay');?>");
         } else {
             stripe_array['token'] = response.id;
-
+            debugger;
             $.post(window.ajax + 'stripe/handle', {
                 stripeToken: stripe_array['token'],
                 stripe_name: stripe_array['stripe_name'],
@@ -379,6 +380,7 @@
                 stripe_year: stripe_array['stripe_year'],
                 stripe_cvc: stripe_array['stripe_cvc'],
                 amount: stripe_array['amount'],
+                
                 description: getDescription(),
                 price: stripe_array['amount'],
                 payType: 'membership'
@@ -729,6 +731,7 @@
                     }
                 });
                 $( document ).on( 'click', '#stripe_pro', function(e) {
+                    debugger;
                     e.preventDefault();
                     e.stopImmediatePropagation();
                     if (typeof StripeCheckout == 'undefined'){
@@ -737,6 +740,7 @@
                         var script = document.createElement('script');
                         script.src = 'https://checkout.stripe.com/checkout.js';
                         script.type = 'text/javascript';
+                        debugger;
                         script.onload = script.onreadystatechange = function() {
                             if ( !this.readyState || this.readyState == "loaded" || this.readyState == "complete" ) {
                                 if (typeof StripeCheckout !== 'undefined'){

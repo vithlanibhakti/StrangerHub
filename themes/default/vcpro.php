@@ -1,112 +1,111 @@
-<?php if( $profile->is_pro == 1 ){?><script>window.location = window.site_url;</script><?php } ?>
+<!-- <?php if( $profile->is_pro == 1 ){?><script>window.location = window.site_url;</script><?php } ?> -->
 <?php if( $config->pro_system == 0 ){?><script>window.location = window.site_url;</script><?php } ?>
 <?php if( isGenderFree($profile->gender) === true ){?><script>window.location = window.site_url;</script><?php } ?>
-<?php  
-$name= $profile->username; 
-//echo $name;
-include("config.php");?>
+<!-- Premium user -->
+<?php  include("config.php");
+        session_start();
+        $sql=mysqli_query($con,"SELECT `id`, `silver_amount_min`, `silver_time_min`, `silver_amount_hr`, `silver_time_hr`, `gold_amount_min`, `gold_time_min`, `gold_amount_hr`, `gold_time_hr`, `premium_amount_min`, `premium_time_min`, `premium_amount_hr`, `premium_time_hr` FROM `vcpro`  ");
+                              while($row=mysqli_fetch_assoc($sql))
+                                    {
+                                        $silver_amount_min= $row['silver_amount_min'];
+                                        $silver_amount_hr= $row['silver_amount_hr'];
+              
+                                        $gold_amount_min= $row['gold_amount_min'];
+                                        $gold_amount_hr= $row['gold_amount_hr'];
+                                        
+                                        $premium_amount_min= $row['premium_amount_min'];
+                                        $premium_amount_hr= $row['premium_amount_hr'];
+
+                                        
+                                        $stm = $row['silver_time_min'];
+                                        
+                                        $sth= $row['silver_time_hr'];
+                                        
+                                        $gtm =$row['gold_time_min'];
+                                        
+                                        $gth = $row['gold_time_hr'];
+                                        
+                                        $ptm = $row['premium_time_min'];
+                                        
+                                        $pth = $row['premium_time_hr'];
+                           
+                                    }
+        ?>
+		
 <div class="container page-margin find_matches_cont">
 	<div class="row r_margin">
 		<div class="col l3">
 			<?php require( $theme_path . 'main' . $_DS . 'sidebar.php' );?>
 		</div>
-        <?php  include("config.php");
-        session_start();
-        $sql=mysqli_query($con,"SELECT * from vcpro ");
-        while($row=mysqli_fetch_assoc($sql))
-           {
-             $sam = $row['silver_amount_min'];
-             $stm = $row['silver_time_min'];
-             $sah= $row['silver_amount_hr'];
-             $sth= $row['silver_time_hr'];
-             $gam =$row['gold_amount_min'];
-             $gtm =$row['gold_time_min'];
-             $gah = $row['gold_amount_hr'];
-             $gth = $row['gold_time_hr'];
-             $pam = $row['premium_amount_min'];
-             $ptm = $row['premium_time_min'];
-             $pah = $row['premium_amount_hr'];
-             $pth = $row['premium_time_hr'];
-           }
-?>
+		
 		<div class="col l9">
 			<div class="dt_premium dt_sections dt_pro_pg">
 				<div class="dt_p_head center">
 					<h2 class="light gold-text"><?php echo __( 'Amazing' );?> <?php echo ucfirst( $config->site_name );?> <?php echo __( 'features you can’t live without' );?>.</h2>
 					<p class="bold"><?php echo __( 'Activating Premium will help you meet more people, faster.' );?></p>
 				</div>
-                <div class="row dt_prem_row">
+				<div class="row dt_prem_row">
 					<div class="col s12 m7 l5">
 						<div class="dt_choose_pro">
 							<h2><?php echo __( 'Choose a Plan' );?></h2>
-                            
-							<p>
-								<label>
-									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $silver;?>" data-price="<?php echo $silver;?>" checked />
-									<span class="pln_name">
-										<span class="pln_popular"><span><?php echo __( 'Most popular' );?></span>
-                                        <span class="pln_popular_tail"></span></span>
-										<span class="duration">Silver</span>
-										<span class="price"><?php echo $config->currency_symbol . $sam." for ".$stm." min";?></span>
-									</span>
-                                </label>
-                                
-                            </p>
                             <p>
 								<label>
-									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $silver;?>" data-price="<?php echo $silver;?>" checked />
+									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $silver_amount_min;?>" data-price="<?php echo $silver_amount_min;?>"  />
 									<span class="pln_name">
-										<span class="duration">Silver</span>
-										<span class="price"><?php echo $config->currency_symbol . $sah." for ".$sth." hr";?></span>
+										<span class="duration">silver_amount</span>
+										<span class="price"><?php echo $config->currency_symbol . $silver_amount_min." for ".$stm." min";?></span>
 									</span>
-                                </label>
-                                
-                            </p>
-                            
-                            
-							<p>
+								</label>
+							</p>
+				            <p>
 								<label>
-									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $silver;?>" data-price="<?php echo $silver;?>" checked />
+									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $silver_amount_hr;?>" data-price="<?php echo $silver_amount_hr;?>"  />
 									<span class="pln_name">
-										<span class="duration">Gold</span>
-										<span class="price"><?php echo $config->currency_symbol . $gam." for ".$gtm." min";?></span>
+										<span class="duration">silver_amount</span>
+										<span class="price"><?php echo $config->currency_symbol . $silver_amount_hr." for ".$sth." hr";?></span>
 									</span>
-                                </label>
-                                
-                            </p>
+								</label>
+							</p>
+                            
                             <p>
 								<label>
-									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $silver;?>" data-price="<?php echo $silver;?>" checked />
+									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $gold_amount_min;?>" data-price="<?php echo $gold_amount_min;?>"  />
 									<span class="pln_name">
-										<span class="duration">Gold</span>
-										<span class="price"><?php echo $config->currency_symbol . $gah." for ".$gth." hr";?></span>
+										<span class="duration">gold_amount</span>
+										<span class="price"><?php echo $config->currency_symbol . $gold_amount_min." for ".$gtm." min";?></span>
 									</span>
-                                </label>
-                                
-                            </p>
-                            
-
-							<p>
-								<label>
-									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $silver;?>" data-price="<?php echo $silver;?>" checked />
-									<span class="pln_name">
-										<span class="duration">Premium</span>
-										<span class="price"><?php echo $config->currency_symbol . $pam." for ".$ptm." min";?></span>
-									</span>
-                                </label>
-                                
-                            </p>
+								</label>
+							</p>
                             <p>
 								<label>
-									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $silver;?>" data-price="<?php echo $silver;?>" checked />
+									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $gold_amount_hr;?>" data-price="<?php echo $gold_amount_hr;?>"  />
 									<span class="pln_name">
-										<span class="duration">Premium</span>
-										<span class="price"><?php echo $config->currency_symbol . $pah." for ".$pth." hr";?></span>
+										<span class="duration">gold_amount</span>
+										<span class="price"><?php echo $config->currency_symbol . $gold_amount_hr." for ".$gth." hr";?></span>
 									</span>
-                                </label>
-                                
-                            </p>
-                            <div class="pay_using center">
+								</label>
+							</p>
+				            
+                            <p>
+								<label>
+									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $premium_amount_min;?>" data-price="<?php echo $premium_amount_min;?>"  />
+									<span class="pln_name">
+										<span class="duration">premium_amount</span>
+										<span class="price"><?php echo $config->currency_symbol . $premium_amount_min." for ".$ptm." min";?></span>
+									</span>
+								</label>
+							</p>
+				            <p>
+								<label>
+									<input class="with-gap" name="pro_plan" type="radio" value="<?php echo $premium_amount_hr;?>" data-price="<?php echo $premium_amount_hr;?>"  />
+									<span class="pln_name">
+										<span class="duration">premium_amount</span>
+										<span class="price"><?php echo $config->currency_symbol . $premium_amount_hr." for ".$pth." hr";?></span>
+									</span>
+								</label>
+							</p>
+        
+				            <div class="pay_using center">
 								<p class="bold"><?php echo __( 'Pay Using' );?></p>
 								<div class="pay_u_btns valign-wrapper">
 									<button id="paypal" onclick="clickAndDisable(this);" class="btn paypal valign-wrapper">
@@ -121,7 +120,7 @@ include("config.php");?>
 									<button id="stripe_pro_new" class="btn stripe valign-wrapper">
                                     <?php echo __( 'Card' );?> 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"></path></svg></button>
-<!--								<button id="stripe_pro_btn" class="hide"></button>-->
+<!--									<button id="stripe_pro_btn" class="hide"></button>-->
                                     <?php if(!empty($config->bank_description)){?>
                                         <button id="bank_transfer" class="btn valign-wrapper bank">
                                         <?php echo __( 'Bank Transfer' );?>
@@ -137,75 +136,7 @@ include("config.php");?>
 							</div>
 						</div>
 					</div>
-					<!-- <div class="col s12 m5 l7">
-						<div class="dt_pro_features">
-							<h2><?php echo __( 'Why Choose Premium Membership' );?></h2>
-							<div class="row">
-								<div class="col s12 m12 l4 center">
-									<span class="red darken-1">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5.5,2C3.56,2 2,3.56 2,5.5V18.5C2,20.44 3.56,22 5.5,22H16L22,16V5.5C22,3.56 20.44,2 18.5,2H5.5M5.75,4H18.25A1.75,1.75 0 0,1 20,5.75V15H18.5C16.56,15 15,16.56 15,18.5V20H5.75A1.75,1.75 0 0,1 4,18.25V5.75A1.75,1.75 0 0,1 5.75,4M14.44,6.77C14.28,6.77 14.12,6.79 13.97,6.83C13.03,7.09 12.5,8.05 12.74,9C12.79,9.15 12.86,9.3 12.95,9.44L16.18,8.56C16.18,8.39 16.16,8.22 16.12,8.05C15.91,7.3 15.22,6.77 14.44,6.77M8.17,8.5C8,8.5 7.85,8.5 7.7,8.55C6.77,8.81 6.22,9.77 6.47,10.7C6.5,10.86 6.59,11 6.68,11.16L9.91,10.28C9.91,10.11 9.89,9.94 9.85,9.78C9.64,9 8.95,8.5 8.17,8.5M16.72,11.26L7.59,13.77C8.91,15.3 11,15.94 12.95,15.41C14.9,14.87 16.36,13.25 16.72,11.26Z" /></svg>
-									</span>
-									<p><?php echo __( 'See more stickers on chat' );?></p>
-								</div>
-								<div class="col s12 m12 l4 center">
-									<span class="pink darken-1">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" /></svg>
-									</span>
-									<p><?php echo __( 'Show in Premium bar' );?></p>
-								</div>
-								<div class="col s12 m12 l4 center">
-									<span class="purple darken-1">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21M19.75,3.19L18.33,4.61C20.04,6.3 21,8.6 21,11H23C23,8.07 21.84,5.25 19.75,3.19M1,11H3C3,8.6 3.96,6.3 5.67,4.61L4.25,3.19C2.16,5.25 1,8.07 1,11Z" /></svg>
-									</span>
-									<p><?php echo __( 'See likes notifications' );?></p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col s12 m12 l4 center">
-									<span class="green darken-1">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.65,2.85L19.26,6.71L22.77,8.5L21,12L22.78,15.5L19.24,17.29L18.63,21.15L14.74,20.54L11.97,23.3L9.19,20.5L5.33,21.14L4.71,17.25L1.22,15.47L3,11.97L1.23,8.5L4.74,6.69L5.35,2.86L9.22,3.5L12,0.69L14.77,3.46L18.65,2.85M9.5,7A1.5,1.5 0 0,0 8,8.5A1.5,1.5 0 0,0 9.5,10A1.5,1.5 0 0,0 11,8.5A1.5,1.5 0 0,0 9.5,7M14.5,14A1.5,1.5 0 0,0 13,15.5A1.5,1.5 0 0,0 14.5,17A1.5,1.5 0 0,0 16,15.5A1.5,1.5 0 0,0 14.5,14M8.41,17L17,8.41L15.59,7L7,15.59L8.41,17Z" /></svg>
-									</span>
-									<p><?php echo __( 'Get discount when buy boost me' );?></p>
-								</div>
-								<div class="col s12 m12 l4 center">
-									<span class="blue darken-1">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16L19.36,10.27L21,9L12,2L3,9L4.63,10.27M12,18.54L4.62,12.81L3,14.07L12,21.07L21,14.07L19.37,12.8L12,18.54Z" /></svg>
-									</span>
-									<p><?php echo __( 'Display first in find matches' );?></p>
-								</div>
-								<div class="col s12 m12 l4 center">
-									<span class="teal darken-1">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M13,15L15.5,17.5L16.92,16.08L12,11.16L7.08,16.08L8.5,17.5L11,15V21H13V15M3,3H21V5H3V3M3,7H13V9H3V7Z" /></svg>
-									</span>
-									<p><?php echo __( 'Display on top in random users' );?></p>
-								</div>
-							</div>
-							<div class="row">
-                                <?php if($config->video_chat == 1 && $config->audio_chat == 1){ ?>
-                                    <div class="col s12 m12 l4 center">
-                                        <span class="pink darken-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,10.5L21,6.5V17.5L17,13.5V17A1,1 0 0,1 16,18H4A1,1 0 0,1 3,17V7A1,1 0 0,1 4,6H16A1,1 0 0,1 17,7V10.5M14,16V15C14,13.67 11.33,13 10,13C8.67,13 6,13.67 6,15V16H14M10,8A2,2 0 0,0 8,10A2,2 0 0,0 10,12A2,2 0 0,0 12,10A2,2 0 0,0 10,8Z"></path></svg>
-                                        </span>
-                                        <p><?php echo __( 'Video and Audio calls to all users' );?></p>
-                                    </div>
-                                <?php } ?>
-
-                                <div class="col s12 m12 l4 center">
-									<span class="indigo darken-1">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z"></path></svg>
-									</span>
-                                    <p><?php echo __( 'Find potential matches by country' );?></p>
-                                </div>
-								<div class="col s12 m12 l4 center"></div>
-							</div>
-
-						</div>
-					</div>
-				</div> -->
-			</div>
-		</div>
-	</div>
-</div>
+				
 <!-- End Premium  -->
 <a href="javascript:void(0);" id="btnProSuccess" style="visibility: hidden;display: none;"></a>
 
@@ -307,7 +238,7 @@ include("config.php");?>
         </div>
     </div>
 </div>
-
+                         
 <script>
 
     document.getElementById('stripe_pro_new').addEventListener('click', function(e) {
