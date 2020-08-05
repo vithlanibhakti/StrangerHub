@@ -89,6 +89,7 @@ $pages = array('manage-stickers',
     'fake-users',
     'manage-announcements',
     'manage-genders',
+    'manage-vendors',
     'add-genders',
     'edit-genders',
     'bank-receipts',
@@ -136,6 +137,11 @@ if ($is_admin == false) {
     $authorized = false;
     if( $page == 'edit-user-permissions' ){
         if( CheckUserPermission($current_user_id, 'manage-users') === true ){
+            $authorized = true;
+        }
+    }
+    if( $page == 'edit-user-permissions' ){
+        if( CheckUserPermission($current_user_id, 'manage-vendors') === true ){
             $authorized = true;
         }
     }
@@ -414,6 +420,7 @@ if (empty($page_loaded)) {
                         ||
                         (
                             CheckUserPermission($current_user_id, "manage-users") ||
+                            CheckUserPermission($current_user_id, "manage-vendors") ||
                             CheckUserPermission($current_user_id, "manage-genders") ||
                             CheckUserPermission($current_user_id, "manage-profile-fields") ||
                             CheckUserPermission($current_user_id, "manage-success-stories") ||
@@ -429,6 +436,11 @@ if (empty($page_loaded)) {
                             <?php if($is_admin == true || CheckRadioPermission($current_user_id, "manage-users")){ ?>
                             <li <?php echo ($page == 'manage-users' || $page == 'edit-user-permissions') ? 'class="active"' : ''; ?>>
                                 <a href="<?php echo Wo_LoadAdminLinkSettings('manage-users'); ?>">Manage Users</a>
+                            </li>
+                            <?php }?>
+                            <?php if($is_admin == true || CheckRadioPermission($current_user_id, "manage-vendors")){ ?>
+                            <li <?php echo ($page == 'manage-vendors' || $page == 'edit-user-permissions') ? 'class="active"' : ''; ?>>
+                                <a href="<?php echo Wo_LoadAdminLinkSettings('manage-vendors'); ?>">Manage Vendors</a>
                             </li>
                             <?php }?>
                             <?php if($is_admin == true || CheckRadioPermission($current_user_id, "manage-genders")){ ?>
