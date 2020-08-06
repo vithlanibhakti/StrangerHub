@@ -4598,15 +4598,17 @@ function Wo_Sql_Result($res, $row = 0, $col = 0) {
     return false;
 }
 function Wo_UserDatavendor($user_id){
+    
     global $wo, $conn, $cache;
     if (empty($user_id) || !is_numeric($user_id) || $user_id < 0) {
         return false;
     }
     $data           = array();
     $user_id        = Secure($user_id);
-    $query_one      = "SELECT * FROM `users` WHERE `id` = {$user_id}  AND `role`='vendor'";
+    $query_one      = "SELECT * FROM `users` WHERE `id` = {$user_id} AND `role`='vendor'";
     $sql          = mysqli_query($conn, $query_one);
     $fetched_data = mysqli_fetch_assoc($sql);
+    //echo $fetched_data;
     if (empty($fetched_data)) {
         return array();
     }

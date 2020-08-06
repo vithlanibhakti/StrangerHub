@@ -19,7 +19,7 @@ if (!empty($filter_keyword)) {
 } 
 
 else {
-  $users = $db->objectbuilder()->orderBy('id', 'DESC')->paginate('users', $page);
+  $users = $db->objectbuilder()->where('role',user)->orderBy('id', 'DESC')->paginate('users', $page);
 }
 
 if (($page > $db->totalPages) && !empty($_GET['page-id'])) {
