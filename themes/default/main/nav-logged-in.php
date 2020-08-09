@@ -64,7 +64,7 @@ $sql=mysqli_query($con,"SELECT role,id from users where username='$guest'");
             while($row2 = mysqli_fetch_assoc($col))
             {
                   $COLUMN_NAME = $row2['COLUMN_NAME'];
-                  echo "<script>alert($COLUMN_NAME)</script>"; 
+                //  echo "<script>alert($COLUMN_NAME)</script>"; 
                   ?>
              <li>
                <a href="<?php echo $site_url;?>/pro" data-ajax="/pro" class="prem"><span><?php echo $COLUMN_NAME;?></span></a>

@@ -186,7 +186,7 @@ function ProUsers(){
         $gender_query = '`gender` IN ('. $genders .')';
     }
 
-    $sql = 'SELECT * FROM `users` WHERE '. $gender_query . ' AND `verified` = "1" AND (`is_pro` = "1" OR `is_boosted` = "1") AND `id` NOT IN (SELECT `like_userid` FROM `likes` WHERE `is_dislike` = "1" AND `user_id` = '.$u->id.') AND `id` NOT IN (SELECT `block_userid` FROM `blocks` WHERE `user_id` = '.$u->id.') ORDER BY rand(),`boosted_time`,`is_pro`,`pro_time` DESC LIMIT '. $limit;
+    $sql = 'SELECT * FROM `users` WHERE '. $gender_query . ' AND `verified` = "1"  AND `role` = "vendor" AND (`is_pro` = "1" OR `is_boosted` = "1") AND `id` NOT IN (SELECT `like_userid` FROM `likes` WHERE `is_dislike` = "1" AND `user_id` = '.$u->id.') AND `id` NOT IN (SELECT `block_userid` FROM `blocks` WHERE `user_id` = '.$u->id.') ORDER BY rand(),`boosted_time`,`is_pro`,`pro_time` DESC LIMIT '. $limit;
     $pro_users = $db->rawQuery($sql);
 
     return ToObject($pro_users);

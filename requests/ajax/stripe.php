@@ -185,14 +185,20 @@ public function handlevc() {
             $amount = self::Config()->chest_of_credits_amount;
         }
     } else if ($payType == 'membership') {
-        if ($realprice == self::Config()->weekly_pro_plan) {
+        if ($realprice == '50') {
             $membershipType = 1;
-        } else if ($realprice == self::Config()->monthly_pro_plan) {
+        } else if ($realprice == '100') {
             $membershipType = 2;
-        } else if ($realprice == self::Config()->yearly_pro_plan) {
+        } else if ($realprice == '80') {
             $membershipType = 3;
-        } else if ($realprice == self::Config()->lifetime_pro_plan) {
+        } else if ($realprice == '120') {
             $membershipType = 4;
+        }
+        else if ($realprice == '100') {
+            $membershipType = 5;
+        }
+        else if ($realprice == '150') {
+            $membershipType = 6;
         }
     }
     try {

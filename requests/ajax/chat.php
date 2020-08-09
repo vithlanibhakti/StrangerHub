@@ -1101,6 +1101,7 @@ Class Chat extends Aj {
                 'message' => __('Forbidden')
             );
         }
+        
         require_once($_LIBS . 'twilio'.$_DS.'vendor'.$_DS.'autoload.php');
         $user_1       = userData($_GET['user_id1']);
         $user_2       = userData($_GET['user_id2']);
@@ -1127,6 +1128,7 @@ Class Chat extends Aj {
             'access_token_2' => Secure($token_2),
             'room_name' => $room_script
         ));
+        
         if ($insertData > 0) {
             $wo['calling_user'] = userData($_GET['user_id2']);
 //////            if (!empty($wo['calling_user']['ios_m_device_id']) && $wo['config']['ios_push_messages'] == 1) {
@@ -1177,7 +1179,7 @@ Class Chat extends Aj {
                 $html .= ob_get_contents();
                 ob_end_clean();
             }
-
+           
             $data = array(
                 'status' => 200,
                 'access_token' => $token_,

@@ -1,3 +1,59 @@
+<?php
+
+// include("config.php");
+// $A=$wo['incall']['in_call_user']->id;
+// echo "<script>alert('$A')</script>"; 
+// $col=mysqli_query($con,"SELECT DATE_FORMAT(FROM_UNIXTIME(`time`), '%Y-%m-%d %H:%i:%s') AS `date` FROM videocalles where from_id=$A");
+
+//             while($row2 = mysqli_fetch_assoc($col))
+//             {
+//                 $date=$row2['date'];
+//                 echo "<script>alert('$date')</script>"; 
+            
+
+// $col=mysqli_query($con,"SELECT `amount`, `pro_plan` FROM `vcpayments` where `user_id`=$A");
+
+//             while($row2 = mysqli_fetch_assoc($col))
+//             {
+//                 $amount=$row2['amount'];
+//                 $pro_plan=$row2['pro_plan'];
+               
+//                 if($amount=='50')
+//                 {
+//                     $exdate=date('yy-m-d', strtotime($date. ' + 30 minutes')); 
+//                     echo "<script>alert('$exdate')</script>"; 
+//                 }
+                
+//                 else if($amount =='100')
+//                 {
+//                     $add_min = date("Y-m-d H:i:s", strtotime($date . "+60 minutes"));
+//                     echo "<script>alert('$add_min')</script>"; 
+//                 }
+//                 else if($amount == '80')
+//                 {
+//                     $add_min = date("Y-m-d H:i:s", strtotime($date . "+30 minutes"));
+//                     echo "<script>alert('$add_min')</script>"; 
+//                 }
+//                 else if($amount =='120')
+//                 {
+//                     $add_min = date("Y-m-d H:i:s", strtotime($date . "+60 minutes"));
+//                     echo "<script>alert('$add_min')</script>"; 
+//                 }
+//                 else if($amount =='100')
+//                 {
+//                     $add_min = date("Y-m-d H:i:s", strtotime($date . "+30 minutes"));
+//                     echo "<script>alert('$add_min')</script>"; 
+//                 }
+//                 else if($amount =='150')
+//                 {
+//                     $add_min = date("Y-m-d H:i:s", strtotime($date . "+30 minutes"));
+//                     echo "<script>alert('$add_min')</script>"; 
+//                 }
+
+
+//             }
+//         }
+          ?>
 <div class="modal fade" id="re-calling-modal" role="dialog" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content dt_call_rec_ing">
